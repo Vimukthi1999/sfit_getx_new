@@ -47,7 +47,7 @@ class SigninController extends GetxController {
       dioClient.withOutTokenPost(
         AppUrl.login,
         {
-          // "email": controllerUser.text.toString(),
+          // "username": controllerUser.text.toString(),
           // "password": controllerPw.text.toString(),
           "username": AppUrl.userName,
           "password": AppUrl.appPw,

@@ -82,8 +82,10 @@ class SteponeView extends GetView<ServiceformController> {
                     print('switched to: $index');
                     controller.tog.value = index!;
                     if (index == 0) {
+                      //when click clear enter by asset code
                       controller.clearSelectedValues(3);
                     } else {
+                      //when click clear enter by contract
                       controller.clearSelectedValues(4);
                     }
                   },

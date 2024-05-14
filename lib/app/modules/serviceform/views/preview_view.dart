@@ -21,13 +21,29 @@ class PreviewView extends GetView<ServiceformController> {
             appcardviewTitle('Field Service Entries'),
             SizedBox(height: 15.h),
             //<----------- company ------------
-            item('Company', controller.selectedcompany.value == 'Choose one' ? 'N/A' : controller.selectedcompany.value),
+            // item('Company', controller.selectedcompany.value == 'Choose one' ? 'N/A' : controller.selectedcompany.value),
+
+            item(
+              'Company',
+              controller.tog.value == 0
+                  ? controller.setCompany.value
+                  : controller.selectedcompany.value == 'Choose one'
+                      ? 'N/A'
+                      : controller.selectedcompany.value,
+            ),
 
             //<----------- srf no ------------
             item('SRF-No', ''),
 
             //<----------- site ------------
-            item('Site', controller.selectedsite.value == 'Choose one' ? 'N/A' : controller.selectedsite.value),
+            item(
+              'Site',
+              controller.tog.value == 0
+                  ? controller.setSite.value
+                  : controller.selectedsite.value == 'Choose one'
+                      ? 'N/A'
+                      : controller.selectedsite.value,
+            ),
 
             //<----------- address ------------
             item('Address', ''),
@@ -48,10 +64,18 @@ class PreviewView extends GetView<ServiceformController> {
             item('Email', ''),
 
             //<----------- contract id ------------
-            item('Contract ID', controller.idofselectedcontarct.value == '' ? 'N/A' : controller.idofselectedcontarct.value),
+            item(
+                'Contract ID',
+                controller.idofselectedcontarct.value == ''
+                    ? 'N/A'
+                    : controller.idofselectedcontarct.value),
 
             //<----------- contract ------------
-            item('Contract', controller.selectedcontract.value == 'Choose one' ? 'N/A' : controller.selectedcontract.value),
+            item(
+                'Contract',
+                controller.selectedcontract.value == 'Choose one'
+                    ? 'N/A'
+                    : controller.selectedcontract.value),
 
             //<----------- asset no ------------
             item(

@@ -14,14 +14,7 @@ class ServiceformView extends GetView<ServiceformController> {
     return SafeArea(
       child: Scaffold(
         key: controller.scaffoldKey,
-        // floatingActionButton: FloatingActionButton(onPressed: () {
-          // controller.toJson(2);
-          // controller.submitAllData();
-          // Utils.appDialog('Success', 'message', () {
-          // Get.toNamed(Routes.DASHBOARD);
-          
-        // }),
-        // }),
+        floatingActionButton: FloatingActionButton(onPressed: () {}),
         drawer: Container(
           color: Colors.grey[350],
           width: Get.width * 0.5,
@@ -30,7 +23,8 @@ class ServiceformView extends GetView<ServiceformController> {
         ),
         body: Column(
           children: [
-            buildPreviewHeader(context, 'Field Service Entries', controller.openDrower),
+            buildPreviewHeader(
+                context, 'Field Service Entries', controller.openDrower),
             Expanded(
               child: ListView(
                 physics: BouncingScrollPhysics(),
@@ -202,5 +196,4 @@ class ServiceformView extends GetView<ServiceformController> {
   //     log('me time ake error akk nisa dp load wenne  na');
   //   }
   // }
-
 }

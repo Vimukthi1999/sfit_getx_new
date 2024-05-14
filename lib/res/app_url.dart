@@ -1,19 +1,23 @@
 // ignore_for_file: non_constant_identifier_names
 
 class AppUrl {
-  static const LOGO_URL = 'https://serviceportal.systemforce.net/images/bg_img.png';
+  static const LOGO_URL =
+      'https://serviceportal.systemforce.net/images/bg_img.png';
 
-  static var baseUrl = 'https://serviceportal.systemforce.net/api/';
+  // static var baseUrl = 'https://serviceportal.systemforce.net/api/';
+  // static var baseUrl = 'http://127.0.0.1:8000/api/';
+  static var baseUrl = 'http://10.0.2.2:8000/api/';
 
-  static var userName = 'cyberc';
-  static var appPw = 'Abcd@1234';
+  static var userName = 'admin@sfit.com';
+  static var appPw = 'Abc@123';
   // core apis
 
   static var login = '${baseUrl}auth/login';
 
   // dp s
 
-  static var customerdp = '${baseUrl}get-companys-all/'; // customer dp ~ company
+  static var customerdp =
+      '${baseUrl}get-companys-all/'; // customer dp ~ company
   static var sitedp = '${baseUrl}api_dropsites_forcompany/';
   static var contractdp = '${baseUrl}api_asset_contracts_forsites/';
   static var orderbydp = '${baseUrl}auth/login'; // this may be hard coded dp

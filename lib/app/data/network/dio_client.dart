@@ -33,7 +33,8 @@ class DioClient {
             String newAccessToken = await refreshToken();
 
             // Update the request header with the new access uid
-            e.requestOptions.headers['Authorization'] = 'Bearer $newAccessToken';
+            e.requestOptions.headers['Authorization'] =
+                'Bearer $newAccessToken';
 
             log('Update the request header with the new access uid - retry request');
             // Repeat the request with the updated header
@@ -62,7 +63,12 @@ class DioClient {
 
     // var res = await _dio.post('https://serviceportal.systemforce.net/api/auth/refresh', options: options);
 
-    final response = await http.post(Uri.parse("https://serviceportal.systemforce.net/api/auth/refresh"), headers: {'Authorization': 'Bearer $old', 'Accept': 'application/json'});
+    // final response = await http.post(Uri.parse("https://serviceportal.systemforce.net/api/auth/refresh"), headers: {'Authorization': 'Bearer $old', 'Accept': 'application/json'});
+    final response = await http
+        .post(Uri.parse("http://10.0.2.2:8000/api/auth/refresh"), headers: {
+      'Authorization': 'Bearer $old',
+      'Accept': 'application/json'
+    });
 
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
@@ -129,10 +135,14 @@ class DioClient {
     _dio.options.headers["Authorization"] = "Bearer $uid";
 
     try {
-      Options options = Options(headers: {
-        'Accept': 'application/json',
-        // 'Content-Type': 'application/json',
-      }, sendTimeout: Duration(seconds: AppUrl.connectionTimeout), receiveTimeout: Duration(seconds: AppUrl.receiveTimeout), responseType: ResponseType.bytes);
+      Options options = Options(
+          headers: {
+            'Accept': 'application/json',
+            // 'Content-Type': 'application/json',
+          },
+          sendTimeout: Duration(seconds: AppUrl.connectionTimeout),
+          receiveTimeout: Duration(seconds: AppUrl.receiveTimeout),
+          responseType: ResponseType.bytes);
 
       final response = await _dio.get(
         uri,
@@ -246,7 +256,8 @@ class DioClient {
       switch (type) {
         case 'E':
           FormData formData = FormData.fromMap({});
-          formData.fields.addAll(queryParameters.entries.map((e) => MapEntry(e.key, e.value.toString())));
+          formData.fields.addAll(queryParameters.entries
+              .map((e) => MapEntry(e.key, e.value.toString())));
           response = await _dio.post(
             uri,
             options: options,
@@ -256,7 +267,8 @@ class DioClient {
 
         case 'C':
           FormData formDataClie = FormData.fromMap({});
-          formDataClie.fields.addAll(queryParameters.entries.map((e) => MapEntry(e.key, e.value.toString())));
+          formDataClie.fields.addAll(queryParameters.entries
+              .map((e) => MapEntry(e.key, e.value.toString())));
 
           response = await _dio.post(
             uri,
@@ -302,7 +314,8 @@ class DioClient {
 
       // FormData formData = FormData.fromMap(queryParameters);
       FormData formData = FormData.fromMap({});
-      formData.fields.addAll(queryParameters.entries.map((e) => MapEntry(e.key, e.value.toString())));
+      formData.fields.addAll(queryParameters.entries
+          .map((e) => MapEntry(e.key, e.value.toString())));
 
       final response = await _dio.post(
         uri,

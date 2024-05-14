@@ -22,7 +22,7 @@ class DashboardView extends GetView<DashboardController> {
       child: Scaffold(
         // floatingActionButton: FloatingActionButton(onPressed: () {
         //   // log(controller.temsearchoption.values.toString());
-          
+
         // }),
         body: SingleChildScrollView(
           // physics: BouncingScrollPhysics(),
@@ -58,13 +58,15 @@ class DashboardView extends GetView<DashboardController> {
                   children: [
                     Expanded(
                       child: Container(
-                        child: buildCustomDatePicker('Date : From', context, true),
+                        child:
+                            buildCustomDatePicker('Date : From', context, true),
                       ),
                     ),
                     SizedBox(width: 40.w),
                     Expanded(
                       child: Container(
-                        child: buildCustomDatePicker('Date : To', context, false),
+                        child:
+                            buildCustomDatePicker('Date : To', context, false),
                       ),
                     ),
                     SizedBox(width: 40.w),
@@ -87,7 +89,8 @@ class DashboardView extends GetView<DashboardController> {
                         children: [
                           appDashBoardlblTxt('Customer'),
                           Obx(
-                            () => customDropDowns(controller.selectedcompany.value, () async {
+                            () => customDropDowns(
+                                controller.selectedcompany.value, () async {
                               // await controller.fetchCompany();
                               controller.filterCompany('');
                               controller.clearSelectedValues(1);
@@ -106,7 +109,8 @@ class DashboardView extends GetView<DashboardController> {
                         children: [
                           appDashBoardlblTxt('Site'),
                           Obx(
-                            () => customDropDowns(controller.selectedsite.value, () {
+                            () => customDropDowns(controller.selectedsite.value,
+                                () {
                               controller.filterSite('');
                               controller.clearSelectedValues(2);
                               Future.delayed(const Duration(seconds: 1), () {
@@ -124,7 +128,8 @@ class DashboardView extends GetView<DashboardController> {
                         children: [
                           appDashBoardlblTxt('Contract'),
                           Obx(
-                            () => customDropDowns(controller.selectedcontract.value, () {
+                            () => customDropDowns(
+                                controller.selectedcontract.value, () {
                               controller.filterContract('');
                               Future.delayed(const Duration(seconds: 1), () {
                                 dpContractWidget();
@@ -151,7 +156,8 @@ class DashboardView extends GetView<DashboardController> {
                         children: [
                           appDashBoardlblTxt('Order By'),
                           Obx(
-                            () => customDropDowns(controller.selectedorderby.value, () {
+                            () => customDropDowns(
+                                controller.selectedorderby.value, () {
                               Future.delayed(const Duration(seconds: 1), () {
                                 dpOrderbyWidget();
                               });
@@ -167,7 +173,8 @@ class DashboardView extends GetView<DashboardController> {
                         children: [
                           appDashBoardlblTxt('Engineer'),
                           Obx(
-                            () => customDropDowns(controller.selectedengineer.value, () {
+                            () => customDropDowns(
+                                controller.selectedengineer.value, () {
                               controller.filterEngineer('');
                               Future.delayed(const Duration(seconds: 1), () {
                                 dpEngineerWidget();
@@ -208,7 +215,11 @@ class DashboardView extends GetView<DashboardController> {
                       SizedBox(width: 40.w),
                       Expanded(
                         child: Obx(
-                          () => appLoadingButton(Theme.of(context).primaryColor, controller.searchForm, 'Search', controller.isSearching.value),
+                          () => appLoadingButton(
+                              Theme.of(context).primaryColor,
+                              controller.searchForm,
+                              'Search',
+                              controller.isSearching.value),
                         ),
                       ),
                     ],
@@ -272,7 +283,7 @@ class DashboardView extends GetView<DashboardController> {
                 () => PaginatedDataTable(
                   rowsPerPage: controller.rowsPerPage.value,
                   columnSpacing: 20.w,
-                  dataRowHeight: 50.w,
+                  dataRowMinHeight: 50.w,
                   columns: [
                     DataColumn(label: appitemtableHeadertxt('FORM NO')),
                     DataColumn(label: appitemtableHeadertxt('CUSTOMER')),
@@ -344,7 +355,8 @@ class DashboardView extends GetView<DashboardController> {
   // }
 
 // date picker
-  Widget buildCustomDatePicker(String title, BuildContext context, bool isFrom) {
+  Widget buildCustomDatePicker(
+      String title, BuildContext context, bool isFrom) {
     return Container(
       margin: EdgeInsets.only(top: 10.h),
       child: Column(
@@ -374,7 +386,9 @@ class DashboardView extends GetView<DashboardController> {
                     padding: EdgeInsets.symmetric(horizontal: 15.w),
                     child: Obx(
                       () => Text(
-                        isFrom ? controller.startdate.value : controller.enddate.value,
+                        isFrom
+                            ? controller.startdate.value
+                            : controller.enddate.value,
                         // '${pickedDateFrom.day} / ${pickedDateFrom.month} / ${pickedDateFrom.year}'
 
                         textAlign: TextAlign.right,
@@ -390,7 +404,9 @@ class DashboardView extends GetView<DashboardController> {
                     ),
                     tooltip: 'Tap to open date picker',
                     onPressed: () {
-                      isFrom ? controller.fromDate(context) : controller.toDate(context);
+                      isFrom
+                          ? controller.fromDate(context)
+                          : controller.toDate(context);
                     },
                   ),
                 ],
@@ -467,20 +483,24 @@ class DashboardView extends GetView<DashboardController> {
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
                       onTap: () {
-                        controller.selectedcompany.value = controller.fcompanylist[index].dropValue;
+                        controller.selectedcompany.value =
+                            controller.fcompanylist[index].dropValue;
 
-                        controller.idofselectedcompany.value = controller.fcompanylist[index].dropId.toString();
+                        controller.idofselectedcompany.value =
+                            controller.fcompanylist[index].dropId.toString();
 
                         log(controller.fcompanylist[index].dropValue);
                         Get.back();
 
-                        controller.fetchSite(controller.idofselectedcompany.value.toString());
+                        controller.fetchSite(
+                            controller.idofselectedcompany.value.toString());
                       },
                       leading: Icon(
                         Icons.add,
                         size: 20.w,
                       ),
-                      title: appDashBoardlblTxt(controller.fcompanylist[index].dropValue),
+                      title: appDashBoardlblTxt(
+                          controller.fcompanylist[index].dropValue),
                     );
                   },
                 ),
@@ -523,20 +543,24 @@ class DashboardView extends GetView<DashboardController> {
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
                       onTap: () {
-                        controller.selectedsite.value = controller.fsitelist[index].dropValue;
+                        controller.selectedsite.value =
+                            controller.fsitelist[index].dropValue;
 
-                        controller.idofselectedsite.value = controller.fsitelist[index].dropId.toString();
+                        controller.idofselectedsite.value =
+                            controller.fsitelist[index].dropId.toString();
 
                         log(controller.fsitelist[index].dropId);
                         Get.back();
 
-                        controller.fetchContarct(controller.idofselectedsite.value.toString());
+                        controller.fetchContarct(
+                            controller.idofselectedsite.value.toString());
                       },
                       leading: Icon(
                         Icons.add,
                         size: 20.w,
                       ),
-                      title: appDashBoardlblTxt(controller.fsitelist[index].dropValue),
+                      title: appDashBoardlblTxt(
+                          controller.fsitelist[index].dropValue),
                     );
                   },
                 ),
@@ -579,9 +603,11 @@ class DashboardView extends GetView<DashboardController> {
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
                       onTap: () {
-                        controller.selectedcontract.value = controller.fcontarctlist[index].dropValue;
+                        controller.selectedcontract.value =
+                            controller.fcontarctlist[index].dropValue;
 
-                        controller.idofselectedcontarct.value = controller.fcontarctlist[index].dropId.toString();
+                        controller.idofselectedcontarct.value =
+                            controller.fcontarctlist[index].dropId.toString();
 
                         log(controller.fcontarctlist[index].dropId);
                         Get.back();
@@ -590,7 +616,8 @@ class DashboardView extends GetView<DashboardController> {
                         Icons.add,
                         size: 20.w,
                       ),
-                      title: appDashBoardlblTxt(controller.fcontarctlist[index].dropValue),
+                      title: appDashBoardlblTxt(
+                          controller.fcontarctlist[index].dropValue),
                     );
                   },
                 ),
@@ -617,9 +644,11 @@ class DashboardView extends GetView<DashboardController> {
           itemBuilder: (BuildContext context, int index) {
             return ListTile(
               onTap: () {
-                controller.selectedorderby.value = controller.orderbylist[index]['drop_value'];
+                controller.selectedorderby.value =
+                    controller.orderbylist[index]['drop_value'];
 
-                controller.idofselectedoderby.value = controller.orderbylist[index]['drop_id'];
+                controller.idofselectedoderby.value =
+                    controller.orderbylist[index]['drop_id'];
 
                 log(controller.orderbylist[index]['drop_value']);
                 Get.back();
@@ -628,7 +657,8 @@ class DashboardView extends GetView<DashboardController> {
                 Icons.add,
                 size: 20.w,
               ),
-              title: appDashBoardlblTxt(controller.orderbylist[index]['drop_value']),
+              title: appDashBoardlblTxt(
+                  controller.orderbylist[index]['drop_value']),
             );
           },
         ),
@@ -664,9 +694,11 @@ class DashboardView extends GetView<DashboardController> {
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
                       onTap: () {
-                        controller.selectedengineer.value = controller.fengineerlist[index].dropValue;
+                        controller.selectedengineer.value =
+                            controller.fengineerlist[index].dropValue;
 
-                        controller.idofselectedengineer.value = controller.fengineerlist[index].dropId.toString();
+                        controller.idofselectedengineer.value =
+                            controller.fengineerlist[index].dropId.toString();
 
                         log(controller.fengineerlist[index].dropId);
                         Get.back();
@@ -675,7 +707,8 @@ class DashboardView extends GetView<DashboardController> {
                         Icons.add,
                         size: 20.w,
                       ),
-                      title: appDashBoardlblTxt(controller.fengineerlist[index].dropValue),
+                      title: appDashBoardlblTxt(
+                          controller.fengineerlist[index].dropValue),
                     );
                   },
                 ),

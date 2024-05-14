@@ -236,7 +236,9 @@ class ServiceformController extends GetxController {
       fengineerlist.addAll(engineerlist);
     } else {
       fengineerlist.addAll(engineerlist.where((croplist) {
-        return croplist.dropValue.toLowerCase().contains(value.toLowerCase().toString());
+        return croplist.dropValue
+            .toLowerCase()
+            .contains(value.toLowerCase().toString());
       }).toList());
     }
   }
@@ -268,7 +270,9 @@ class ServiceformController extends GetxController {
       fcompanylist.addAll(companylist);
     } else {
       fcompanylist.addAll(companylist.where((croplist) {
-        return croplist.dropValue.toLowerCase().contains(value.toLowerCase().toString());
+        return croplist.dropValue
+            .toLowerCase()
+            .contains(value.toLowerCase().toString());
       }).toList());
     }
   }
@@ -306,7 +310,9 @@ class ServiceformController extends GetxController {
       fsitelist.addAll(sitelist);
     } else {
       fsitelist.addAll(sitelist.where((croplist) {
-        return croplist.dropValue.toLowerCase().contains(value.toLowerCase().toString());
+        return croplist.dropValue
+            .toLowerCase()
+            .contains(value.toLowerCase().toString());
       }).toList());
     }
   }
@@ -339,7 +345,9 @@ class ServiceformController extends GetxController {
       fcontarctlist.addAll(contarctlist);
     } else {
       fcontarctlist.addAll(contarctlist.where((croplist) {
-        return croplist.dropValue.toLowerCase().contains(value.toLowerCase().toString());
+        return croplist.dropValue
+            .toLowerCase()
+            .contains(value.toLowerCase().toString());
       }).toList());
     }
   }
@@ -372,7 +380,9 @@ class ServiceformController extends GetxController {
       Utils.getXsnackBar('', 'Please Enter Asset Code.');
       return false;
     }
-    await dioClient.get(AppUrl.checkasset + assetcontroller.text).then((value) async {
+    await dioClient
+        .get(AppUrl.checkasset + assetcontroller.text)
+        .then((value) async {
       // 9036
       log(value.toString());
 
@@ -411,9 +421,11 @@ class ServiceformController extends GetxController {
 
           idofselectedsite.value = obj.data.siteDet.siteId.toString();
 
-          idofselectedcontarct.value = await obj.data.contractDet[0].contractId.toString();
+          idofselectedcontarct.value =
+              await obj.data.contractDet[0].contractId.toString();
 
-          if (totaltiemcalculated.value != 'To Be Determined' && idofselectedtypeofhours.value != '') {
+          if (totaltiemcalculated.value != 'To Be Determined' &&
+              idofselectedtypeofhours.value != '') {
             getLabourHours(
               idofselectedtypeofhours.value,
               idofselectedcontarct.value,
@@ -656,14 +668,15 @@ class ServiceformController extends GetxController {
         eTime = totalTimeInMinutes.toString();
         totaltiemcalculated.value = calculateTotalTime();
       }
-      if (totaltiemcalculated.value != 'To Be Determined' && idofselectedtypeofhours.value != '') {
-            getLabourHours(
-              idofselectedtypeofhours.value,
-              idofselectedcontarct.value,
-              // totaltiemcalculated.value == 'To Be Determined' ? '' :
-              totaltiemcalculated.value.toString(),
-            );
-          }
+      if (totaltiemcalculated.value != 'To Be Determined' &&
+          idofselectedtypeofhours.value != '') {
+        getLabourHours(
+          idofselectedtypeofhours.value,
+          idofselectedcontarct.value,
+          // totaltiemcalculated.value == 'To Be Determined' ? '' :
+          totaltiemcalculated.value.toString(),
+        );
+      }
       return '$hours:$minutes';
     }
   }
@@ -695,14 +708,15 @@ class ServiceformController extends GetxController {
 
       print(totalTimeIn);
       totaltiemcalculated.value = calculateTotalTime();
-      if (totaltiemcalculated.value != 'To Be Determined' && idofselectedtypeofhours.value != '') {
-            getLabourHours(
-              idofselectedtypeofhours.value,
-              idofselectedcontarct.value,
-              // totaltiemcalculated.value == 'To Be Determined' ? '' :
-              totaltiemcalculated.value.toString(),
-            );
-          }
+      if (totaltiemcalculated.value != 'To Be Determined' &&
+          idofselectedtypeofhours.value != '') {
+        getLabourHours(
+          idofselectedtypeofhours.value,
+          idofselectedcontarct.value,
+          // totaltiemcalculated.value == 'To Be Determined' ? '' :
+          totaltiemcalculated.value.toString(),
+        );
+      }
     } catch (e) {
       print(e.toString());
     }
@@ -862,7 +876,6 @@ class ServiceformController extends GetxController {
 
         // formattedDuration = '${duration.inHours}:${(duration.inMinutes % 60).toString().padLeft(2, '0')}';
         // print(formattedDuration); // prints: 2:30
-
       }
     } catch (e) {
       formattedDuration = '---';
@@ -946,7 +959,8 @@ class ServiceformController extends GetxController {
   }
 
   /// labour hour = id of type of hours + id of contract + total time calculated
-  Future<void> getLabourHours(String idofTypeofHours, String contractID, String totaleTime) async {
+  Future<void> getLabourHours(
+      String idofTypeofHours, String contractID, String totaleTime) async {
     if (idofTypeofHours.isEmpty || idofTypeofHours == '') {
       Utils.getXsnackBar('Required', 'Type of hours field is required');
       return;
@@ -961,7 +975,14 @@ class ServiceformController extends GetxController {
     }
 
     log('*****$idofTypeofHours,$contractID,$totaleTime');
-    dioClient.get(AppUrl.labourhour + idofTypeofHours + '&ctrct_val=' + contractID + '&ttl_val=' + totaleTime).then((value) {
+    dioClient
+        .get(AppUrl.labourhour +
+            idofTypeofHours +
+            '&ctrct_val=' +
+            contractID +
+            '&ttl_val=' +
+            totaleTime)
+        .then((value) {
       if (value['success']) {
         valueofLabourHours.value = value['data']['labour_value'].toString();
       } else {
@@ -1003,7 +1024,9 @@ class ServiceformController extends GetxController {
       fitemslist.addAll(itemslist);
     } else {
       fitemslist.addAll(itemslist.where((croplist) {
-        return croplist.itemDes.toLowerCase().contains(value.toLowerCase().toString());
+        return croplist.itemDes
+            .toLowerCase()
+            .contains(value.toLowerCase().toString());
       }).toList());
     }
   }
@@ -1018,7 +1041,8 @@ class ServiceformController extends GetxController {
           for (var element in value['data']) {
             //int index = element;
             var serial_no = element['serial_no'];
-            SerialChips serialchipsobj = SerialChips(index: index, serial_no: serial_no);
+            SerialChips serialchipsobj =
+                SerialChips(index: index, serial_no: serial_no);
 
             serialchips.add(serialchipsobj);
 
@@ -1028,7 +1052,8 @@ class ServiceformController extends GetxController {
           return serialchips;
         } else {
           log('featch values are null');
-          Utils.getXsnackBar('Not Found', 'Sorry ! currnently not available Serial Numbers');
+          Utils.getXsnackBar(
+              'Not Found', 'Sorry ! currnently not available Serial Numbers');
           return null;
         }
       } else {
@@ -1047,7 +1072,8 @@ class ServiceformController extends GetxController {
         log(value.toString());
         // var objC = SerialInfoModel.fromJson(value);
         String oldPurpose = value['data']['purpose'];
-        if (!((oldPurpose == 'STOCK') || (oldPurpose == 'SFIT')) && (oldPurpose != idofselectedcompany.value))
+        if (!((oldPurpose == 'STOCK') || (oldPurpose == 'SFIT')) &&
+            (oldPurpose != idofselectedcompany.value))
         // if (((oldPurpose != 'STOCK') || (oldPurpose != 'SFIT')) && oldPurpose == idofselectedcompany.value)
         {
           changePurpose(value, chipIndex, chipSerial);
@@ -1082,7 +1108,9 @@ class ServiceformController extends GetxController {
               children: [
                 appnormaltxt('You are going to change the current purpose'),
                 SizedBox(height: 10.w),
-                appnormaltxt('Purpose : ${val['data']['purpose']} --> New Purpose : ${setCompany.value}'),
+                appnormaltxt(
+                  'Purpose : ${val['data']['purpose']} --> New Purpose : ${tog.value == 0 ? setCompany.value : selectedcompany.value}',
+                ),
                 SizedBox(height: 15.w),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -1096,7 +1124,8 @@ class ServiceformController extends GetxController {
                           serialinfolist.add(
                             SerialInfoModel.fromJson(val).data,
                           );
-                          serialinfolist.value = List.from(serialinfolist.reversed);
+                          serialinfolist.value =
+                              List.from(serialinfolist.reversed);
                           // delete chip
                           deleteChips(cindex, cserial);
                           Get.back();
@@ -1127,7 +1156,8 @@ class ServiceformController extends GetxController {
   Future<void> deleteChips(int index, String serial_no) async {
     try {
       print('remove index --> $index');
-      final index1 = serialchips.indexWhere((element) => element.index == index);
+      final index1 =
+          serialchips.indexWhere((element) => element.index == index);
 
       print('remove 1 index --> $index');
 
@@ -1257,7 +1287,9 @@ class ServiceformController extends GetxController {
           "paction": 'add',
           "site": idofselectedsite.toString(),
           "totalTime": totaltiemcalculated.toString(),
-          "assetNo": tog.value == 0 ? assetcontroller.text.toString() : idofselectedassetno.toString(),
+          "assetNo": tog.value == 0
+              ? assetcontroller.text.toString()
+              : idofselectedassetno.toString(),
           "requestDate": requestDate.toString(),
           "requestTime": requestTime.toString(),
           "customer_id": idofselectedcompany.toString(),
@@ -1303,7 +1335,8 @@ class ServiceformController extends GetxController {
       } else {
         convertedSerialInfoList.clear();
         for (var element in oldList) {
-          SendSerialInfoToSaveAPI sendSerialInfoToSaveAPIObj = SendSerialInfoToSaveAPI(
+          SendSerialInfoToSaveAPI sendSerialInfoToSaveAPIObj =
+              SendSerialInfoToSaveAPI(
             item: element.item,
             itemdes: element.itemDes,
             usr_desc: element.itemDes,
@@ -1401,8 +1434,8 @@ class ServiceformController extends GetxController {
         /// incomplete
         assetcontroller.clear();
 
-        setCompany.value = '------';
-        setSite.value = '------';
+        setCompany.value = 'N/A';
+        setSite.value = 'N/A';
         selectedcontract.value = 'Choose one';
 
         idofselectedcompany.value = '';

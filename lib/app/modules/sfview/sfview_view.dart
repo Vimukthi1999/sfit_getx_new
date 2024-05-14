@@ -364,7 +364,7 @@ class SfviewView extends GetView<SfviewController> {
                     : PaginatedDataTable(
                         rowsPerPage: controller.rowsPerPage.value,
                         columnSpacing: 20.w,
-                        dataRowHeight: 40.w,
+                        dataRowMinHeight: 40.w,
                         columns: [
                           DataColumn(label: appitemtableHeadertxt('ITEM')),
                           DataColumn(label: appitemtableHeadertxt('DESCRIPTION')),
