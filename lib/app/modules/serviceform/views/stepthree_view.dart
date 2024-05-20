@@ -41,8 +41,10 @@ class StepthreeView extends GetView<ServiceformController> {
                             children: [
                               appreqtxt('To be paid in'),
                               Obx(
-                                () => customDropDowns(controller.selectedtobepaidin.value, () {
-                                  Future.delayed(const Duration(seconds: 1), () {
+                                () => customDropDowns(
+                                    controller.selectedtobepaidin.value, () {
+                                  Future.delayed(const Duration(seconds: 1),
+                                      () {
                                     dpToBePaidInWidget();
                                   });
                                 }),
@@ -62,12 +64,30 @@ class StepthreeView extends GetView<ServiceformController> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               appnormaltxt('Product Type'),
+                              // Obx(
+                              //   () => customDropDowns(
+                              //       controller.selectedproducttype.value, () {
+                              //     Future.delayed(const Duration(seconds: 1),
+                              //         () {
+                              //       dpProductTypeWidget();
+                              //     });
+                              //   }),
+                              // ),
+
                               Obx(
-                                () => customDropDowns(controller.selectedproducttype.value, () {
-                                  Future.delayed(const Duration(seconds: 1), () {
-                                    dpProductTypeWidget();
-                                  });
-                                }),
+                                () => Container(
+                                    height: 55.w,
+                                    width: Get.width,
+                                    decoration: BoxDecoration(
+                                        border: Border.all(
+                                      color: Colors.black,
+                                      width: 1.w,
+                                      style: BorderStyle.solid,
+                                    )),
+                                    child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: apphintTxt(controller
+                                            .selectedproducttype.value))),
                               ),
                             ],
                           ),
@@ -94,9 +114,12 @@ class StepthreeView extends GetView<ServiceformController> {
                                       controller: controller.ticketNocontroller,
                                       decoration: InputDecoration(
                                         hintText: '--------',
-                                        hintStyle: TextStyle(color: Colors.black, fontSize: 15.sp),
+                                        hintStyle: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 15.sp),
                                         border: InputBorder.none,
                                       ),
+                                      // readOnly : true
                                     ),
                                   ),
                                 ),
@@ -115,8 +138,10 @@ class StepthreeView extends GetView<ServiceformController> {
                             children: [
                               appreqtxt('Type of hours'),
                               Obx(
-                                () => customDropDowns(controller.selectedtypeofhours.value, () {
-                                  Future.delayed(const Duration(seconds: 1), () {
+                                () => customDropDowns(
+                                    controller.selectedtypeofhours.value, () {
+                                  Future.delayed(const Duration(seconds: 1),
+                                      () {
                                     dpTypeofHoursWidget();
                                   });
                                 }),
@@ -140,7 +165,10 @@ class StepthreeView extends GetView<ServiceformController> {
                                       width: 1.w,
                                       style: BorderStyle.solid,
                                     )),
-                                    child: Align(alignment: Alignment.centerLeft, child: apphintTxt(controller.valueofLabourHours.value))),
+                                    child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: apphintTxt(controller
+                                            .valueofLabourHours.value))),
                               ),
                             ],
                           ),
@@ -149,11 +177,19 @@ class StepthreeView extends GetView<ServiceformController> {
                     ),
                     SizedBox(height: 20.h),
 
-                    buildexpandItems(true, 'Problem', 'As Stated or Requested by the Client', controller.problemcontroller),
-                    buildexpandItems(false, 'Findings', 'Initial Investigation', controller.findingcontroller),
-                    buildexpandItems(false, 'Work Undertaken', '', controller.workUndercontroller),
-                    buildexpandItems(false, 'Recommendations', '', controller.recommendationcontroller),
-                    buildexpandItems(false, 'Action Task', '', controller.actiontaskcontroller),
+                    buildexpandItems(
+                        true,
+                        'Problem',
+                        'As Stated or Requested by the Client',
+                        controller.problemcontroller),
+                    buildexpandItems(false, 'Findings', 'Initial Investigation',
+                        controller.findingcontroller),
+                    buildexpandItems(false, 'Work Undertaken', '',
+                        controller.workUndercontroller),
+                    buildexpandItems(false, 'Recommendations', '',
+                        controller.recommendationcontroller),
+                    buildexpandItems(false, 'Action Task', '',
+                        controller.actiontaskcontroller),
                   ],
                 ),
               ),
@@ -164,7 +200,8 @@ class StepthreeView extends GetView<ServiceformController> {
     );
   }
 
-  Widget buildexpandItems(bool isreq, String title, String hint, TextEditingController txtcontroller) {
+  Widget buildexpandItems(bool isreq, String title, String hint,
+      TextEditingController txtcontroller) {
     return Padding(
       padding: EdgeInsets.only(bottom: 15.w),
       child: ConstrainedBox(
@@ -233,15 +270,21 @@ class StepthreeView extends GetView<ServiceformController> {
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
                       onTap: () {
-                        controller.selectedtobepaidin.value = controller.ftobepaidinlist[index].dropValue;
+                        controller.selectedtobepaidin.value =
+                            controller.ftobepaidinlist[index].dropValue;
 
-                        controller.idofselectedtobepaidin.value = controller.ftobepaidinlist[index].dropId.toString();
+                        controller.idofselectedtobepaidin.value =
+                            controller.ftobepaidinlist[index].dropId.toString();
 
                         log(controller.ftobepaidinlist[index].dropValue);
                         Get.back();
                       },
-                      leading: Icon(Icons.add,size: 20.w,),
-                      title: appDashBoardlblTxt(controller.ftobepaidinlist[index].dropValue),
+                      leading: Icon(
+                        Icons.add,
+                        size: 20.w,
+                      ),
+                      title: appDashBoardlblTxt(
+                          controller.ftobepaidinlist[index].dropValue),
                     );
                   },
                 ),
@@ -284,15 +327,22 @@ class StepthreeView extends GetView<ServiceformController> {
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
                       onTap: () {
-                        controller.selectedproducttype.value = controller.fproducttypelist[index].dropValue;
+                        controller.selectedproducttype.value =
+                            controller.fproducttypelist[index].dropValue;
 
-                        controller.idofselectedproducttype.value = controller.fproducttypelist[index].dropId.toString();
+                        controller.idofselectedproducttype.value = controller
+                            .fproducttypelist[index].dropId
+                            .toString();
 
                         log(controller.fproducttypelist[index].dropValue);
                         Get.back();
                       },
-                      leading: Icon(Icons.add,size: 20.w,),
-                      title: appDashBoardlblTxt(controller.fproducttypelist[index].dropValue),
+                      leading: Icon(
+                        Icons.add,
+                        size: 20.w,
+                      ),
+                      title: appDashBoardlblTxt(
+                          controller.fproducttypelist[index].dropValue),
                     );
                   },
                 ),
@@ -335,18 +385,27 @@ class StepthreeView extends GetView<ServiceformController> {
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
                       onTap: () {
-                        controller.selectedtypeofhours.value = controller.ftypeofhourslist[index].dropValue;
+                        controller.selectedtypeofhours.value =
+                            controller.ftypeofhourslist[index].dropValue;
 
-                        controller.idofselectedtypeofhours.value = controller.ftypeofhourslist[index].dropId.toString();
+                        controller.idofselectedtypeofhours.value = controller
+                            .ftypeofhourslist[index].dropId
+                            .toString();
                         Get.back();
-                        controller.getLabourHours(controller.idofselectedtypeofhours.value, controller.idofselectedcontarct.value, 
-                        // controller.totaltiemcalculated.value == 'To Be Determined' ? '' : 
-                        controller.totaltiemcalculated.value.toString());
+                        controller.getLabourHours(
+                            controller.idofselectedtypeofhours.value,
+                            controller.idofselectedcontarct.value,
+                            // controller.totaltiemcalculated.value == 'To Be Determined' ? '' :
+                            controller.totaltiemcalculated.value.toString());
 
                         log(controller.ftypeofhourslist[index].dropValue);
                       },
-                      leading: Icon(Icons.add,size: 20.w,),
-                      title: appDashBoardlblTxt(controller.ftypeofhourslist[index].dropValue),
+                      leading: Icon(
+                        Icons.add,
+                        size: 20.w,
+                      ),
+                      title: appDashBoardlblTxt(
+                          controller.ftypeofhourslist[index].dropValue),
                     );
                   },
                 ),

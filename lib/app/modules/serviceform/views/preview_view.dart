@@ -46,22 +46,22 @@ class PreviewView extends GetView<ServiceformController> {
             ),
 
             //<----------- address ------------
-            item('Address', ''),
+            item('Address', controller.preAddress.value),
 
             //<----------- city ------------
-            item('City', ''),
+            item('City', controller.preCity.value),
 
             //<----------- post code ------------
-            item('Post Code', ''),
+            item('Post Code', controller.prePostCode.value),
 
             //<----------- tel ------------
-            item('Tel', ''),
+            item('Tel', controller.preTel.value),
 
             //<----------- fax ------------
-            item('Fax', ''),
+            item('Fax', controller.preFax.value),
 
             //<----------- email ------------
-            item('Email', ''),
+            item('Email', controller.preEmail.value),
 
             //<----------- contract id ------------
             item(

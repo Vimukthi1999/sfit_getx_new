@@ -80,6 +80,9 @@ class AppUrl {
   // get signature details
   static var fetchsignaturedata = '${baseUrl}api_svcform_action/Signature/';
 
+  // get some more preview info
+  static var getsomemorepreviewinfo = '${baseUrl}api_site_details/';
+
   // for network service
 
   static const int receiveTimeout = 60000;

@@ -172,7 +172,15 @@ class ServiceformController extends GetxController {
   /// <--------------- close step 04 variables ------------------------>
   /// preview view
   ScrollController previewScroll = ScrollController();
-
+  var preAddress = 'N/A'.obs;
+  var preCity = 'N/A'.obs;
+  var prePostCode = 'N/A'.obs;
+  var preTel = 'N/A'.obs;
+  var preFax = 'N/A'.obs;
+  var preEmail = 'N/A'.obs;
+  // var pre = 'N/A'.obs;
+  // var pre = 'N/A'.obs;
+  // var pre = 'N/A'.obs;
   @override
   void onInit() {
     super.onInit();
@@ -373,6 +381,7 @@ class ServiceformController extends GetxController {
     });
   }
 
+  // check asset when enter by asset code  --> to check asset code
   Future<bool> checkAsset() async {
     bool isAddNewAsset = false;
 
@@ -384,7 +393,7 @@ class ServiceformController extends GetxController {
         .get(AppUrl.checkasset + assetcontroller.text)
         .then((value) async {
       // 9036
-      log(value.toString());
+      print(value.toString());
 
       if (!value.containsKey('data')) {
         // show add asset dialog
@@ -396,6 +405,15 @@ class ServiceformController extends GetxController {
       if (value.containsKey('data')) {
         var obj = AssetCodeDetailsModel.fromJson(value);
         log('--- ${obj} ---${obj.data.contractDet.length}');
+
+        // asset akt adla product type ak fill krn
+        idofselectedproducttype.value =
+            obj.data.assetDet.attrMactype.toString();
+        // set mactype description
+        setMactypeDes(idofselectedproducttype.value);
+
+        // fill some preview details
+        fillSomePreviewInfo(obj.data.siteDet.siteId.toString());
 
         if (obj.data.contractDet.isEmpty) {
           // # company,site purawanna
@@ -470,6 +488,51 @@ class ServiceformController extends GetxController {
     return isAddNewAsset;
   }
 
+  // check asset when enter by contract  --> to get mashine type only
+  checkAssetEnterByContract(String assetid) async {
+    await dioClient.get(AppUrl.checkasset + assetid).then((value) async {
+      // 9036
+      print(value.toString());
+
+      if (value.containsKey('data')) {
+        var obj = AssetCodeDetailsModel.fromJson(value);
+        log('--- ${obj} ---${obj.data.contractDet.length}');
+
+        // asset akt adla product type ak fill krn
+        idofselectedproducttype.value =
+            obj.data.assetDet.attrMactype.toString();
+        // set mactype description
+        setMactypeDes(idofselectedproducttype.value);
+      }
+    }).onError((error, stackTrace) {
+      log(error.toString());
+    });
+  }
+
+  // set mactype des
+  setMactypeDes(String id) async {
+    print("33333333333333333333333333333" + id);
+
+    try {
+      for (var element in producttypelist) {
+        var B = DatumProductType(
+            dropId: element.dropId, dropValue: element.dropValue);
+
+        print("444444444444444444444444444444444" +
+            B.dropId +
+            ">>>>>>>>>>>>>>>>>value -: " +
+            B.dropValue);
+        if (B.dropId.toString() == id) {
+          selectedproducttype.value = element.dropValue.toString();
+          print("*********************" + selectedproducttype.value);
+          break;
+        }
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
   saveAssetCode() {
     if (assetcontroller.text.isEmpty) {
       Utils.getXsnackBar('Required', 'Asset Code is required');
@@ -539,6 +602,29 @@ class ServiceformController extends GetxController {
       } else {
         log('featch values are null');
         Utils.getXsnackBar('Not Found', 'Machine types not found');
+      }
+    }).onError((error, stackTrace) {
+      log(error.toString());
+    });
+  }
+
+// fill some preview info
+  fillSomePreviewInfo(String siteID) {
+    dioClient
+        .get(AppUrl.getsomemorepreviewinfo + siteID)
+        // .get("http://10.0.2.2:8000/api/api_site_details/C2300014S0001")
+        .then((value) {
+      if (value['success']) {
+        print(value);
+        preAddress.value = value['data'][0]['address'].toString();
+        preCity.value = value['data'][0]['city'].toString();
+        prePostCode.value = value['data'][0]['postcode'].toString();
+        preTel.value = value['data'][0]['phone_no'].toString();
+        preFax.value = value['data'][0]['fax'].toString();
+        preEmail.value = value['data'][0]['siteemail'].toString();
+      } else {
+        log('featch values are null');
+        Utils.getXsnackBar('Not Found', value['messages']);
       }
     }).onError((error, stackTrace) {
       log(error.toString());
@@ -1197,10 +1283,12 @@ class ServiceformController extends GetxController {
       Utils.getXsnackBar('Required', 'Contract field is required');
       return;
     }
-    // if (idofselectedassetno == '') {
-    //   Utils.getXsnackBar('Required', 'Asset No is required');
-    //   return;
-    // }
+
+    if ((idofselectedassetno == '' && tog.value == 1) ||
+        (assetcontroller.value == '' && tog.value == 0)) {
+      Utils.getXsnackBar('Required', 'Asset No is required');
+      return;
+    }
 
     if (requestDate.value == 'dd/mm/yyyy') {
       Utils.getXsnackBar('Required', 'Request date is required');
@@ -1388,6 +1476,22 @@ class ServiceformController extends GetxController {
         assetnoelist.clear();
         fassetnoelist.clear();
 
+        // clear selected items on table and chiperbox
+        serialinfolist.clear();
+        convertedSerialInfoList.clear();
+        serialchips.clear();
+        selecteditem.value = 'Choose one';
+        idofselecteditem.value = '';
+        totalCost();
+
+        // clear preview more info
+        preAddress.value = 'N/A';
+        preCity.value = 'N/A';
+        prePostCode.value = 'N/A';
+        preTel.value = 'N/A';
+        preFax.value = 'N/A';
+        preEmail.value = 'N/A';
+
         break;
 
       case 2:
@@ -1404,11 +1508,19 @@ class ServiceformController extends GetxController {
         assetnoelist.clear();
         fassetnoelist.clear();
 
+        // clear preview more info
+        preAddress.value = 'N/A';
+        preCity.value = 'N/A';
+        prePostCode.value = 'N/A';
+        preTel.value = 'N/A';
+        preFax.value = 'N/A';
+        preEmail.value = 'N/A';
+
         break;
 
       case 3:
 
-        /// incomplete
+        /// incomplete  -- 2024-05-14 - need chack
         selectedcompany.value = 'Choose one';
         idofselectedcompany.value = '';
 
@@ -1427,11 +1539,27 @@ class ServiceformController extends GetxController {
         assetnoelist.clear();
         fassetnoelist.clear();
 
+        // clear selected items on table and chiperbox
+        serialinfolist.clear();
+        convertedSerialInfoList.clear();
+        serialchips.clear();
+        selecteditem.value = 'Choose one';
+        idofselecteditem.value = '';
+        totalCost();
+
+        // clear preview more info
+        preAddress.value = 'N/A';
+        preCity.value = 'N/A';
+        prePostCode.value = 'N/A';
+        preTel.value = 'N/A';
+        preFax.value = 'N/A';
+        preEmail.value = 'N/A';
+
         break;
 
       case 4:
 
-        /// incomplete
+        /// incomplete  -- 2024-05-14 - need chack
         assetcontroller.clear();
 
         setCompany.value = 'N/A';
@@ -1444,6 +1572,22 @@ class ServiceformController extends GetxController {
 
         contarctlist.clear();
         fcontarctlist.clear();
+
+        // clear selected items on table and chiperbox
+        serialinfolist.clear();
+        convertedSerialInfoList.clear();
+        serialchips.clear();
+        selecteditem.value = 'Choose one';
+        idofselecteditem.value = '';
+        totalCost();
+
+        // clear preview more info
+        preAddress.value = 'N/A';
+        preCity.value = 'N/A';
+        prePostCode.value = 'N/A';
+        preTel.value = 'N/A';
+        preFax.value = 'N/A';
+        preEmail.value = 'N/A';
 
         break;
 

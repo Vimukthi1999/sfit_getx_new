@@ -99,7 +99,10 @@ class DashboardController extends GetxController {
   }
 
   fetchFilterDate() {
-    return filteredData.skip((currentPage.value - 1) * itemsPerPage.value).take(itemsPerPage.value).toList();
+    return filteredData
+        .skip((currentPage.value - 1) * itemsPerPage.value)
+        .take(itemsPerPage.value)
+        .toList();
   }
 
   // -------------------------------------------------
@@ -127,7 +130,11 @@ class DashboardController extends GetxController {
   void onClose() {}
 
   void fromDate(BuildContext context) async {
-    final DateTime? pickeddate = await showDatePicker(context: context, initialDate: pickedDateFrom, firstDate: DateTime(DateTime.now().year - 5), lastDate: DateTime(DateTime.now().year + 5));
+    final DateTime? pickeddate = await showDatePicker(
+        context: context,
+        initialDate: pickedDateFrom,
+        firstDate: DateTime(DateTime.now().year - 5),
+        lastDate: DateTime(DateTime.now().year + 5));
 
     if (pickeddate != null) {
       pickedDateFrom = pickeddate;
@@ -183,7 +190,9 @@ class DashboardController extends GetxController {
       // fcompanylist.addAll(companylist.where((croplist) => croplist.companyName.contains(value.toString())).toList());
 
       fcompanylist.addAll(companylist.where((croplist) {
-        return croplist.dropValue.toLowerCase().contains(value.toLowerCase().toString());
+        return croplist.dropValue
+            .toLowerCase()
+            .contains(value.toLowerCase().toString());
       }).toList());
     }
     log('2----------------' + fcompanylist.length.toString());
@@ -219,7 +228,9 @@ class DashboardController extends GetxController {
       fsitelist.addAll(sitelist);
     } else {
       fsitelist.addAll(sitelist.where((croplist) {
-        return croplist.dropValue.toLowerCase().contains(value.toLowerCase().toString());
+        return croplist.dropValue
+            .toLowerCase()
+            .contains(value.toLowerCase().toString());
       }).toList());
     }
   }
@@ -255,7 +266,9 @@ class DashboardController extends GetxController {
       fcontarctlist.addAll(contarctlist);
     } else {
       fcontarctlist.addAll(contarctlist.where((croplist) {
-        return croplist.dropValue.toLowerCase().contains(value.toLowerCase().toString());
+        return croplist.dropValue
+            .toLowerCase()
+            .contains(value.toLowerCase().toString());
       }).toList());
     }
   }
@@ -288,54 +301,66 @@ class DashboardController extends GetxController {
       fengineerlist.addAll(engineerlist);
     } else {
       fengineerlist.addAll(engineerlist.where((croplist) {
-        return croplist.dropValue.toLowerCase().contains(value.toLowerCase().toString());
+        return croplist.dropValue
+            .toLowerCase()
+            .contains(value.toLowerCase().toString());
       }).toList());
     }
   }
 
   // service form search
   void searchForm() {
-    myData.clear();
-    temmyData.clear();
-    controllerSearch.clear();
+    if (idofselectedcompany == '' && isCheckIgnoreDate.value) {
+      // block search function
+      Utils.getXsnackBar(
+        'Required',
+        'Please select at least customer when using filter by date to be ignored',
+      );
+    } else {
+      myData.clear();
+      temmyData.clear();
+      controllerSearch.clear();
 
-    //---------------------------------
-    isSearching.value = true;
-    // isemailon.clear();
-    temsearchoption.clear();
-    try {
-      var postJson = toJson();
-      temsearchoption.addAll(postJson);
-      // var res = SfFromModel.fromJson(sfitJson);
-      log(postJson.toString());
+      //---------------------------------
+      isSearching.value = true;
+      // isemailon.clear();
+      temsearchoption.clear();
+      try {
+        var postJson = toJson();
+        temsearchoption.addAll(postJson);
+        // var res = SfFromModel.fromJson(sfitJson);
+        log(postJson.toString());
 
-      dioClient.post(AppUrl.search_field_sevice_entries, postJson).then((value) {
-        log(value.toString());
-        // if (value != null) {
-        if (value['data'].length == 0) {
-          Utils.getXsnackBar('Not Successfull', 'No Data found');
+        dioClient
+            .post(AppUrl.search_field_sevice_entries, postJson)
+            .then((value) {
+          log(value.toString());
+          // if (value != null) {
+          if (value['data'].length == 0) {
+            Utils.getXsnackBar('Not Successfull', 'No Data found');
+            isSearching.value = false;
+          } else {
+            sfBig.value = SfFromModel.fromJson(value);
+            // log(sfBig.toString());
+
+            myData.value = sfBig.value.data;
+            temmyData.addAll(myData);
+
+            print(myData.length);
+            print(temmyData.length);
+
+            isSearching.value = false;
+
+            // print('-------------------------------${sfBig.value.data.toString()}');
+          }
+        }).onError((error, stackTrace) {
+          log('message -- $error');
           isSearching.value = false;
-        } else {
-          sfBig.value = SfFromModel.fromJson(value);
-          // log(sfBig.toString());
-
-          myData.value = sfBig.value.data;
-          temmyData.addAll(myData);
-
-          print(myData.length);
-          print(temmyData.length);
-
-          isSearching.value = false;
-
-          // print('-------------------------------${sfBig.value.data.toString()}');
-        }
-      }).onError((error, stackTrace) {
-        log('message -- $error');
+        });
+      } catch (e) {
+        print(e);
         isSearching.value = false;
-      });
-    } catch (e) {
-      print(e);
-      isSearching.value = false;
+      }
     }
   }
 
@@ -468,7 +493,9 @@ class DashboardController extends GetxController {
     try {
       // chage icon
       DioClient dioClient = DioClient();
-      await dioClient.get(AppUrl.sendemail + obj.requisitionNo.toString()).then((value) {
+      await dioClient
+          .get(AppUrl.sendemail + obj.requisitionNo.toString())
+          .then((value) {
         if (value['success']) {
           Utils.getXSuccesssnackBar(value['messages']['send_email']);
           // print(obj);
@@ -498,7 +525,15 @@ Map<String, dynamic> sfitJson = {
       "engineer": "Allan Wallace",
       "sign_engineer": 1,
       "sign_customer": 0,
-      "option": {"edit": false, "delete": false, "view": true, "email_sent": false, "email": true, "signature": true, "print": true}
+      "option": {
+        "edit": false,
+        "delete": false,
+        "view": true,
+        "email_sent": false,
+        "email": true,
+        "signature": true,
+        "print": true
+      }
     },
     {
       "company_name": "AIM Commercial Catering Equipment Ltd",
@@ -509,7 +544,15 @@ Map<String, dynamic> sfitJson = {
       "engineer": "Alan Mcneil",
       "sign_engineer": 1,
       "sign_customer": 0,
-      "option": {"edit": false, "delete": false, "view": true, "email_sent": false, "email": true, "signature": true, "print": true}
+      "option": {
+        "edit": false,
+        "delete": false,
+        "view": true,
+        "email_sent": false,
+        "email": true,
+        "signature": true,
+        "print": true
+      }
     }
   ]
 };

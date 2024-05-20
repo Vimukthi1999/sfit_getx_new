@@ -14,7 +14,7 @@ class ServiceformView extends GetView<ServiceformController> {
     return SafeArea(
       child: Scaffold(
         key: controller.scaffoldKey,
-        floatingActionButton: FloatingActionButton(onPressed: () {}),
+        // floatingActionButton: FloatingActionButton(onPressed: () {}),
         drawer: Container(
           color: Colors.grey[350],
           width: Get.width * 0.5,

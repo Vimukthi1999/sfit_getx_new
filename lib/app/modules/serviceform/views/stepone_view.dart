@@ -50,7 +50,8 @@ class SteponeView extends GetView<ServiceformController> {
                       children: [
                         appreqtxt('Engineer'),
                         Obx(
-                          () => customDropDowns(controller.selectedengineer.value, () {
+                          () => customDropDowns(
+                              controller.selectedengineer.value, () {
                             controller.filterEngineer('');
                             Future.delayed(const Duration(seconds: 1), () {
                               dpEngineerWidget();
@@ -92,7 +93,9 @@ class SteponeView extends GetView<ServiceformController> {
                 ),
               ),
               SizedBox(height: 20.h),
-              Obx(() => controller.tog.value == 0 ? asset(context) : contract(context)),
+              Obx(() => controller.tog.value == 0
+                  ? asset(context)
+                  : contract(context)),
               SizedBox(height: 20.h),
             ],
           ),
@@ -154,7 +157,9 @@ class SteponeView extends GetView<ServiceformController> {
                           width: 1.w,
                           style: BorderStyle.solid,
                         )),
-                        child: Align(alignment: Alignment.centerLeft, child: apphintTxt(controller.setCompany.value))),
+                        child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: apphintTxt(controller.setCompany.value))),
                   ),
                 ],
               ),
@@ -175,7 +180,9 @@ class SteponeView extends GetView<ServiceformController> {
                           width: 1.w,
                           style: BorderStyle.solid,
                         )),
-                        child: Align(alignment: Alignment.centerLeft, child: apphintTxt(controller.setSite.value))),
+                        child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: apphintTxt(controller.setSite.value))),
                   ),
                 ],
               ),
@@ -187,7 +194,8 @@ class SteponeView extends GetView<ServiceformController> {
                 children: [
                   appreqtxt('Contracts'),
                   Obx(
-                    () => customDropDowns(controller.selectedcontract.value, () {
+                    () =>
+                        customDropDowns(controller.selectedcontract.value, () {
                       controller.filterContract('');
                       Future.delayed(const Duration(seconds: 1), () {
                         dpContractWidget();
@@ -215,7 +223,8 @@ class SteponeView extends GetView<ServiceformController> {
                 children: [
                   appreqtxt('Company Name'),
                   Obx(
-                    () => customDropDowns(controller.selectedcompany.value, () async {
+                    () => customDropDowns(controller.selectedcompany.value,
+                        () async {
                       // await controller.fetchCompany();
                       controller.filterCompany('');
                       controller.clearSelectedValues(1);
@@ -258,7 +267,8 @@ class SteponeView extends GetView<ServiceformController> {
                 children: [
                   appreqtxt('Contracts'),
                   Obx(
-                    () => customDropDowns(controller.selectedcontract.value, () {
+                    () =>
+                        customDropDowns(controller.selectedcontract.value, () {
                       controller.filterContract('');
                       controller.clearSelectedValues(6);
                       Future.delayed(const Duration(seconds: 1), () {
@@ -278,7 +288,7 @@ class SteponeView extends GetView<ServiceformController> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  appnormaltxt('Asset No'),
+                  appreqtxt('Asset No'),
                   Obx(
                     () => customDropDowns(controller.selectedassetno.value, () {
                       Future.delayed(const Duration(seconds: 1), () {
@@ -345,6 +355,7 @@ class SteponeView extends GetView<ServiceformController> {
                                   ),
                                   style: TextStyle(fontSize: 18.sp),
                                   textAlign: TextAlign.start,
+                                  readOnly: true,
                                 ),
                               ),
                             ),
@@ -358,7 +369,8 @@ class SteponeView extends GetView<ServiceformController> {
                           children: [
                             appnormaltxt('Machine Type :'),
                             Obx(
-                              () => customDropDowns(controller.selectedmachinetype.value, () {
+                              () => customDropDowns(
+                                  controller.selectedmachinetype.value, () {
                                 Future.delayed(const Duration(seconds: 1), () {
                                   dpMachineTypeWidget();
                                 });
@@ -379,7 +391,8 @@ class SteponeView extends GetView<ServiceformController> {
                           children: [
                             appnormaltxt('Company :'),
                             Obx(
-                              () => customDropDowns(controller.selectedcompany.value, () async {
+                              () => customDropDowns(
+                                  controller.selectedcompany.value, () async {
                                 // await controller.fetchCompany();
                                 controller.filterCompany('');
                                 controller.clearSelectedValues(1);
@@ -398,7 +411,8 @@ class SteponeView extends GetView<ServiceformController> {
                           children: [
                             appnormaltxt('Site'),
                             Obx(
-                              () => customDropDowns(controller.selectedsite.value, () {
+                              () => customDropDowns(
+                                  controller.selectedsite.value, () {
                                 controller.filterSite('');
                                 controller.clearSelectedValues(2);
                                 Future.delayed(const Duration(seconds: 1), () {
@@ -416,7 +430,8 @@ class SteponeView extends GetView<ServiceformController> {
                           children: [
                             appnormaltxt('Contract :'),
                             Obx(
-                              () => customDropDowns(controller.selectedcontract.value, () {
+                              () => customDropDowns(
+                                  controller.selectedcontract.value, () {
                                 controller.filterContract('');
                                 Future.delayed(const Duration(seconds: 1), () {
                                   dpContractWidget();
@@ -540,11 +555,14 @@ class SteponeView extends GetView<ServiceformController> {
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
                       onTap: () {
-                        controller.selectedengineer.value = controller.fengineerlist[index].dropValue;
+                        controller.selectedengineer.value =
+                            controller.fengineerlist[index].dropValue;
 
-                        controller.idofselectedengineer.value = controller.fengineerlist[index].dropId.toString();
+                        controller.idofselectedengineer.value =
+                            controller.fengineerlist[index].dropId.toString();
 
-                        controller.getReqNo(controller.idofselectedengineer.value);
+                        controller
+                            .getReqNo(controller.idofselectedengineer.value);
 
                         log(controller.fengineerlist[index].dropId);
                         Get.back();
@@ -553,7 +571,8 @@ class SteponeView extends GetView<ServiceformController> {
                         Icons.add,
                         size: 20.w,
                       ),
-                      title: appDashBoardlblTxt(controller.fengineerlist[index].dropValue),
+                      title: appDashBoardlblTxt(
+                          controller.fengineerlist[index].dropValue),
                     );
                   },
                 ),
@@ -596,20 +615,24 @@ class SteponeView extends GetView<ServiceformController> {
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
                       onTap: () {
-                        controller.selectedcompany.value = controller.fcompanylist[index].dropValue;
+                        controller.selectedcompany.value =
+                            controller.fcompanylist[index].dropValue;
 
-                        controller.idofselectedcompany.value = controller.fcompanylist[index].dropId.toString();
+                        controller.idofselectedcompany.value =
+                            controller.fcompanylist[index].dropId.toString();
 
                         log(controller.fcompanylist[index].dropValue);
                         Get.back();
 
-                        controller.fetchSite(controller.idofselectedcompany.value.toString());
+                        controller.fetchSite(
+                            controller.idofselectedcompany.value.toString());
                       },
                       leading: Icon(
                         Icons.add,
                         size: 20.w,
                       ),
-                      title: appDashBoardlblTxt(controller.fcompanylist[index].dropValue),
+                      title: appDashBoardlblTxt(
+                          controller.fcompanylist[index].dropValue),
                     );
                   },
                 ),
@@ -652,21 +675,29 @@ class SteponeView extends GetView<ServiceformController> {
                   itemCount: controller.fsitelist.length,
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
-                      onTap: () {
-                        controller.selectedsite.value = controller.fsitelist[index].dropValue;
+                      onTap: () async {
+                        controller.selectedsite.value =
+                            controller.fsitelist[index].dropValue;
 
-                        controller.idofselectedsite.value = controller.fsitelist[index].dropId.toString();
+                        controller.idofselectedsite.value =
+                            controller.fsitelist[index].dropId.toString();
 
                         log(controller.fsitelist[index].dropId);
                         Get.back();
 
-                        controller.fetchContarct(controller.idofselectedsite.toString());
+                        controller.fetchContarct(
+                            controller.idofselectedsite.toString());
+
+                        // fill some preview info
+                        await controller.fillSomePreviewInfo(
+                            controller.idofselectedsite.value);
                       },
                       leading: Icon(
                         Icons.add,
                         size: 20.w,
                       ),
-                      title: appDashBoardlblTxt(controller.fsitelist[index].dropValue),
+                      title: appDashBoardlblTxt(
+                          controller.fsitelist[index].dropValue),
                     );
                   },
                 ),
@@ -710,19 +741,24 @@ class SteponeView extends GetView<ServiceformController> {
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
                       onTap: () async {
-                        controller.selectedcontract.value = controller.fcontarctlist[index].dropValue;
+                        controller.selectedcontract.value =
+                            controller.fcontarctlist[index].dropValue;
 
-                        controller.idofselectedcontarct.value = controller.fcontarctlist[index].dropId.toString();
+                        controller.idofselectedcontarct.value =
+                            controller.fcontarctlist[index].dropId.toString();
 
                         if (controller.tog.value == 1) {
-                          await controller.fetchAssetCodes(controller.idofselectedcontarct.value);
+                          await controller.fetchAssetCodes(
+                              controller.idofselectedcontarct.value);
                         }
 
-                        if (controller.totaltiemcalculated.value != 'To Be Determined' && controller.idofselectedtypeofhours.value != '') {
+                        if (controller.totaltiemcalculated.value !=
+                                'To Be Determined' &&
+                            controller.idofselectedtypeofhours.value != '') {
                           controller.getLabourHours(
                             controller.idofselectedtypeofhours.value,
                             controller.idofselectedcontarct.value,
-                            // controller.totaltiemcalculated.value == 'To Be Determined' ? '' : 
+                            // controller.totaltiemcalculated.value == 'To Be Determined' ? '' :
                             controller.totaltiemcalculated.value.toString(),
                           );
                         }
@@ -734,7 +770,8 @@ class SteponeView extends GetView<ServiceformController> {
                         Icons.add,
                         size: 20.w,
                       ),
-                      title: appDashBoardlblTxt(controller.fcontarctlist[index].dropValue),
+                      title: appDashBoardlblTxt(
+                          controller.fcontarctlist[index].dropValue),
                     );
                   },
                 ),
@@ -778,18 +815,24 @@ class SteponeView extends GetView<ServiceformController> {
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
                       onTap: () async {
-                        controller.selectedassetno.value = controller.fassetnoelist[index].dropValue;
+                        controller.selectedassetno.value =
+                            controller.fassetnoelist[index].dropValue;
 
-                        controller.idofselectedassetno.value = controller.fassetnoelist[index].dropId.toString();
+                        controller.idofselectedassetno.value =
+                            controller.fassetnoelist[index].dropId.toString();
 
                         log(controller.fassetnoelist[index].dropId);
+
                         Get.back();
+                        await controller.checkAssetEnterByContract(
+                            controller.idofselectedassetno.value);
                       },
                       leading: Icon(
                         Icons.add,
                         size: 20.w,
                       ),
-                      title: appDashBoardlblTxt(controller.fassetnoelist[index].dropValue),
+                      title: appDashBoardlblTxt(
+                          controller.fassetnoelist[index].dropValue),
                     );
                   },
                 ),
@@ -832,9 +875,12 @@ class SteponeView extends GetView<ServiceformController> {
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
                       onTap: () {
-                        controller.selectedproducttype.value = controller.fproducttypelist[index].dropValue;
+                        controller.selectedproducttype.value =
+                            controller.fproducttypelist[index].dropValue;
 
-                        controller.idofselectedproducttype.value = controller.fproducttypelist[index].dropId.toString();
+                        controller.idofselectedproducttype.value = controller
+                            .fproducttypelist[index].dropId
+                            .toString();
 
                         log(controller.fproducttypelist[index].dropValue);
                         Get.back();
@@ -843,7 +889,8 @@ class SteponeView extends GetView<ServiceformController> {
                         Icons.add,
                         size: 20.w,
                       ),
-                      title: appDashBoardlblTxt(controller.fproducttypelist[index].dropValue),
+                      title: appDashBoardlblTxt(
+                          controller.fproducttypelist[index].dropValue),
                     );
                   },
                 ),
@@ -886,9 +933,12 @@ class SteponeView extends GetView<ServiceformController> {
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
                       onTap: () {
-                        controller.selectedmachinetype.value = controller.fmachinetypelist[index].typeName;
+                        controller.selectedmachinetype.value =
+                            controller.fmachinetypelist[index].typeName;
 
-                        controller.idofselectedmachinetype.value = controller.fmachinetypelist[index].typeId.toString();
+                        controller.idofselectedmachinetype.value = controller
+                            .fmachinetypelist[index].typeId
+                            .toString();
 
                         log(controller.fmachinetypelist[index].typeName);
                         Get.back();
@@ -897,7 +947,8 @@ class SteponeView extends GetView<ServiceformController> {
                         Icons.add,
                         size: 20.w,
                       ),
-                      title: appDashBoardlblTxt(controller.fmachinetypelist[index].typeName),
+                      title: appDashBoardlblTxt(
+                          controller.fmachinetypelist[index].typeName),
                     );
                   },
                 ),
