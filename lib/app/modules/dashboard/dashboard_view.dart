@@ -57,13 +57,15 @@ class DashboardView extends GetView<DashboardController> {
                   children: [
                     Expanded(
                       child: Container(
-                        child: buildCustomDatePicker('Date : From', context, true),
+                        child:
+                            buildCustomDatePicker('Date : From', context, true),
                       ),
                     ),
                     SizedBox(width: 40.w),
                     Expanded(
                       child: Container(
-                        child: buildCustomDatePicker('Date : To', context, false),
+                        child:
+                            buildCustomDatePicker('Date : To', context, false),
                       ),
                     ),
                     SizedBox(width: 40.w),
@@ -86,7 +88,8 @@ class DashboardView extends GetView<DashboardController> {
                         children: [
                           appDashBoardlblTxt('Customer'),
                           Obx(
-                            () => customDropDowns(controller.selectedcompany.value, () async {
+                            () => customDropDowns(
+                                controller.selectedcompany.value, () async {
                               // await controller.fetchCompany();
                               controller.filterCompany('');
                               controller.clearSelectedValues(1);
@@ -105,7 +108,8 @@ class DashboardView extends GetView<DashboardController> {
                         children: [
                           appDashBoardlblTxt('Site'),
                           Obx(
-                            () => customDropDowns(controller.selectedsite.value, () {
+                            () => customDropDowns(controller.selectedsite.value,
+                                () {
                               controller.filterSite('');
                               controller.clearSelectedValues(2);
                               Future.delayed(const Duration(seconds: 1), () {
@@ -123,7 +127,8 @@ class DashboardView extends GetView<DashboardController> {
                         children: [
                           appDashBoardlblTxt('Contract'),
                           Obx(
-                            () => customDropDowns(controller.selectedcontract.value, () {
+                            () => customDropDowns(
+                                controller.selectedcontract.value, () {
                               controller.filterContract('');
                               Future.delayed(const Duration(seconds: 1), () {
                                 dpContractWidget();
@@ -150,7 +155,8 @@ class DashboardView extends GetView<DashboardController> {
                         children: [
                           appDashBoardlblTxt('Order By'),
                           Obx(
-                            () => customDropDowns(controller.selectedorderby.value, () {
+                            () => customDropDowns(
+                                controller.selectedorderby.value, () {
                               Future.delayed(const Duration(seconds: 1), () {
                                 dpOrderbyWidget();
                               });
@@ -166,7 +172,8 @@ class DashboardView extends GetView<DashboardController> {
                         children: [
                           appDashBoardlblTxt('Engineer'),
                           Obx(
-                            () => customDropDowns(controller.selectedengineer.value, () {
+                            () => customDropDowns(
+                                controller.selectedengineer.value, () {
                               controller.filterEngineer('');
                               Future.delayed(const Duration(seconds: 1), () {
                                 dpEngineerWidget();
@@ -207,7 +214,11 @@ class DashboardView extends GetView<DashboardController> {
                       SizedBox(width: 40.w),
                       Expanded(
                         child: Obx(
-                          () => appLoadingButton(Theme.of(context).primaryColor, controller.searchForm, 'Search', controller.isSearching.value),
+                          () => appLoadingButton(
+                              Theme.of(context).primaryColor,
+                              controller.searchForm,
+                              'Search',
+                              controller.isSearching.value),
                         ),
                       ),
                     ],
@@ -234,29 +245,29 @@ class DashboardView extends GetView<DashboardController> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(),
-                  Container(
-                    width: 300.w,
-                    padding: EdgeInsets.all(10.w),
-                    child: TextField(
-                      textAlign: TextAlign.center,
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.search,size: 30.w,),
-                        hintText: 'Requisition Number',
-                        hintStyle: TextStyle(fontSize: 18.sp),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15.r),
-                          borderSide: const BorderSide(color: Colors.red),
-                        ),
-                      ),
-                      controller: controller.controllerSearch,
-                      style: TextStyle(fontSize: 18.sp),
-                      onChanged: (value) {
-                        controller.filterText.value = value;
-                        controller.currentPage.value = 1; // Reset to the first page when filtering
-                      },
-                    ),
-                  ),
+                  // Container(),
+                  // Container(
+                  //   width: 300.w,
+                  //   padding: EdgeInsets.all(10.w),
+                  //   child: TextField(
+                  //     textAlign: TextAlign.center,
+                  //     decoration: InputDecoration(
+                  //       prefixIcon: Icon(Icons.search,size: 30.w,),
+                  //       hintText: 'Requisition Number',
+                  //       hintStyle: TextStyle(fontSize: 18.sp),
+                  //       border: OutlineInputBorder(
+                  //         borderRadius: BorderRadius.circular(15.r),
+                  //         borderSide: const BorderSide(color: Colors.red),
+                  //       ),
+                  //     ),
+                  //     controller: controller.controllerSearch,
+                  //     style: TextStyle(fontSize: 18.sp),
+                  //     onChanged: (value) {
+                  //       controller.filterText.value = value;
+                  //       controller.currentPage.value = 1; // Reset to the first page when filtering
+                  //     },
+                  //   ),
+                  // ),
                 ],
               ),
             ),
@@ -265,9 +276,12 @@ class DashboardView extends GetView<DashboardController> {
               () => SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Container(
-                  color: controller.isrefresh.value ? Colors.transparent : Colors.transparent,
+                  color: controller.isrefresh.value
+                      ? Colors.transparent
+                      : Colors.transparent,
                   height: 300.h,
-                  width: 1394.w + 300.w,
+                  // width: 1394.w + 300.w,
+                  width: 1394.w + 340.w,
                   child: Column(
                     children: [
                       Container(
@@ -278,33 +292,48 @@ class DashboardView extends GetView<DashboardController> {
                           // crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(width: 16.w),
-                            SizedBox(width: 170.w, child: appitemtableHeadertxt('FORM NO')),
-                            SizedBox(width: 16.w),
-                            SizedBox(width: 200.w, child: appitemtableHeadertxt('CUSTOMER')),
-                            SizedBox(width: 16.w),
-                            SizedBox(width: 200.w, child: appitemtableHeadertxt('CONTRACT ID')),
-                            SizedBox(width: 16.w),
-                            SizedBox(width: 115.w, child: appitemtableHeadertxt('SERVICE DATE')),
-                            SizedBox(width: 16.w),
-                            SizedBox(width: 120.w,child: appitemtableHeadertxt('REQUEST DATE')),
-                            SizedBox(width: 16.w),
-                            SizedBox(width: 120.w,child: appitemtableHeadertxt('ENGINEER')),
-                            SizedBox(width: 16.w),
-                            SizedBox(width: 125.w,child: appitemtableHeadertxt('SIGN ENGINEER')),
+                            SizedBox(
+                                width: 170.w,
+                                child: appitemtableHeadertxt('FORM NO')),
                             SizedBox(width: 16.w),
                             SizedBox(
-                              width: 200.w,child: appitemtableHeadertxt('SIGN CUSTOMER')),
+                                width: 200.w,
+                                child: appitemtableHeadertxt('CUSTOMER')),
+                            SizedBox(width: 16.w),
+                            SizedBox(
+                                width: 200.w,
+                                child: appitemtableHeadertxt('CONTRACT ID')),
+                            SizedBox(width: 16.w),
+                            SizedBox(
+                                width: 115.w,
+                                child: appitemtableHeadertxt('SERVICE DATE')),
+                            SizedBox(width: 16.w),
+                            SizedBox(
+                                width: 120.w,
+                                child: appitemtableHeadertxt('REQUEST DATE')),
+                            SizedBox(width: 16.w),
+                            SizedBox(
+                                width: 120.w,
+                                child: appitemtableHeadertxt('ENGINEER')),
+                            SizedBox(width: 16.w),
+                            SizedBox(
+                                width: 125.w,
+                                child: appitemtableHeadertxt('SIGN ENGINEER')),
+                            SizedBox(width: 16.w),
+                            SizedBox(
+                                width: 200.w,
+                                child: appitemtableHeadertxt('SIGN CUSTOMER')),
                             SizedBox(width: 16.w),
                             appitemtableHeadertxt('OPTION'),
                           ],
                         ),
                       ),
                       Divider(
-                              thickness: 2.w,
-                              color: Colors.black,
-                              endIndent: 20.w,
-                              indent: 20.w,
-                            ),
+                        thickness: 2.w,
+                        color: Colors.black,
+                        endIndent: 20.w,
+                        indent: 20.w,
+                      ),
                       Expanded(
                         child: ListView.separated(
                           itemCount: controller.fetchFilterDate().length,
@@ -317,10 +346,15 @@ class DashboardView extends GetView<DashboardController> {
                             bool iscusOk = false;
                             bool isIcon = true;
 
-                            isengOk = Obj.signEngineer.toString() == '1' ? true : false;
-                            iscusOk = Obj.signCustomer.toString() == '1' ? true : false;
+                            isengOk = Obj.signEngineer.toString() == '1'
+                                ? true
+                                : false;
+                            iscusOk = Obj.signCustomer.toString() == '1'
+                                ? true
+                                : false;
 
-                            if (Obj.signCustomer.toString().isEmpty || Obj.signCustomer.toString().length > 1) {
+                            if (Obj.signCustomer.toString().isEmpty ||
+                                Obj.signCustomer.toString().length > 1) {
                               isIcon = false;
                             } else {
                               if (Obj.signCustomer == '1') iscusOk = true;
@@ -332,7 +366,10 @@ class DashboardView extends GetView<DashboardController> {
                                 SizedBox(width: 16.w), // Add spacing if needed
                                 // Text(item.companyName.toString()),
 
-                                SizedBox(width: 170.w, child: appitemtableDatatxt(Obj.requisitionNo.toString())),
+                                SizedBox(
+                                    width: 170.w,
+                                    child: appitemtableDatatxt(
+                                        Obj.requisitionNo.toString())),
                                 SizedBox(width: 16.w),
                                 SizedBox(
                                   width: 200.w,
@@ -341,19 +378,29 @@ class DashboardView extends GetView<DashboardController> {
                                   ),
                                 ),
                                 SizedBox(width: 16.w),
-                                SizedBox(width: 200.w, child: appitemtableDatatxt(Obj.contractId.toString())),
+                                SizedBox(
+                                    width: 200.w,
+                                    child: appitemtableDatatxt(
+                                        Obj.contractId.toString())),
                                 SizedBox(width: 16.w),
 
                                 SizedBox(
-                                  width: 115.w,child: appitemtableDatatxt(Obj.startDate.toString())),
+                                    width: 115.w,
+                                    child: appitemtableDatatxt(
+                                        Obj.startDate.toString())),
                                 SizedBox(width: 16.w),
                                 SizedBox(
-                                  width: 120.w,child: appitemtableDatatxt(Obj.requestedDate.toString())),
+                                    width: 120.w,
+                                    child: appitemtableDatatxt(
+                                        Obj.requestedDate.toString())),
                                 SizedBox(width: 16.w),
                                 SizedBox(
-                                  width: 120.w,child: appitemtableDatatxt(Obj.engineer.toString())),
+                                    width: 120.w,
+                                    child: appitemtableDatatxt(
+                                        Obj.engineer.toString())),
                                 SizedBox(width: 16.w),
-                                SizedBox(width: 125.w,
+                                SizedBox(
+                                  width: 125.w,
                                   child: Center(
                                       child: isengOk
                                           ? FaIcon(
@@ -381,7 +428,8 @@ class DashboardView extends GetView<DashboardController> {
                                                 FontAwesomeIcons.circleQuestion,
                                                 size: 20.w,
                                               )
-                                        : appitemtableDatatxt(Obj.signCustomer.toString()),
+                                        : appitemtableDatatxt(
+                                            Obj.signCustomer.toString()),
                                   ),
                                 ),
                                 SizedBox(width: 16.w),
@@ -394,9 +442,12 @@ class DashboardView extends GetView<DashboardController> {
                                       child: Padding(
                                         padding: EdgeInsets.only(right: 5.h),
                                         child: IconButton(
-                                          icon: const FaIcon(FontAwesomeIcons.penToSquare),
+                                          icon: const FaIcon(
+                                              FontAwesomeIcons.penToSquare),
                                           onPressed: () async {
-                                            Get.toNamed(Routes.SFEDIT, arguments: Obj.requisitionNo.toString());
+                                            Get.toNamed(Routes.SFEDIT,
+                                                arguments: Obj.requisitionNo
+                                                    .toString());
                                           },
                                           iconSize: 20.w,
                                         ),
@@ -411,7 +462,11 @@ class DashboardView extends GetView<DashboardController> {
                                         child: IconButton(
                                           icon: const Icon(Icons.delete),
                                           onPressed: () async {
-                                            Get.toNamed(Routes.SFVIEW, arguments: [Obj.requisitionNo.toString(), 'delete']);
+                                            Get.toNamed(Routes.SFVIEW,
+                                                arguments: [
+                                                  Obj.requisitionNo.toString(),
+                                                  'delete'
+                                                ]);
                                           },
                                           iconSize: 23.w,
                                           color: Colors.red,
@@ -425,9 +480,14 @@ class DashboardView extends GetView<DashboardController> {
                                       child: Padding(
                                         padding: EdgeInsets.only(right: 5.h),
                                         child: IconButton(
-                                          icon: const Icon(Icons.remove_red_eye_rounded),
+                                          icon: const Icon(
+                                              Icons.remove_red_eye_rounded),
                                           onPressed: () async {
-                                            Get.toNamed(Routes.SFVIEW, arguments: [Obj.requisitionNo.toString(), 'view']);
+                                            Get.toNamed(Routes.SFVIEW,
+                                                arguments: [
+                                                  Obj.requisitionNo.toString(),
+                                                  'view'
+                                                ]);
                                           },
                                           iconSize: 20.w,
                                           color: Colors.grey,
@@ -444,7 +504,8 @@ class DashboardView extends GetView<DashboardController> {
                                           icon: const Icon(Icons.email),
                                           onPressed: () async {
                                             controller.sendEmail(Obj);
-                                            controller.isrefresh.value = !controller.isrefresh.value;
+                                            controller.isrefresh.value =
+                                                !controller.isrefresh.value;
                                           },
                                           iconSize: 23.w,
                                           color: Colors.blue[700],
@@ -458,7 +519,8 @@ class DashboardView extends GetView<DashboardController> {
                                       child: Padding(
                                         padding: EdgeInsets.only(right: 5.h),
                                         child: IconButton(
-                                          icon: const FaIcon(FontAwesomeIcons.share),
+                                          icon: const FaIcon(
+                                              FontAwesomeIcons.share),
                                           onPressed: () async {
                                             // await tableOption.sentEmail(index, reg);
                                           },
@@ -474,9 +536,15 @@ class DashboardView extends GetView<DashboardController> {
                                       child: Padding(
                                         padding: EdgeInsets.only(right: 5.h),
                                         child: IconButton(
-                                          icon: const FaIcon(FontAwesomeIcons.signature),
+                                          icon: const FaIcon(
+                                              FontAwesomeIcons.signature),
                                           onPressed: () async {
-                                            Get.toNamed(Routes.SINGATURE, arguments: {"reqno": Obj.requisitionNo.toString(), "engSign": isengOk});
+                                            Get.toNamed(Routes.SINGATURE,
+                                                arguments: {
+                                                  "reqno": Obj.requisitionNo
+                                                      .toString(),
+                                                  "engSign": isengOk
+                                                });
                                           },
                                           iconSize: 20.w,
                                           color: Colors.green,
@@ -490,9 +558,12 @@ class DashboardView extends GetView<DashboardController> {
                                       child: Padding(
                                         padding: EdgeInsets.only(right: 5.h),
                                         child: IconButton(
-                                          icon: const FaIcon(FontAwesomeIcons.filePdf),
+                                          icon: const FaIcon(
+                                              FontAwesomeIcons.filePdf),
                                           onPressed: () async {
-                                            Get.toNamed(Routes.PDF, arguments: Obj.requisitionNo.toString());
+                                            Get.toNamed(Routes.PDF,
+                                                arguments: Obj.requisitionNo
+                                                    .toString());
                                           },
                                           iconSize: 20.w,
                                           color: Colors.blue[900],
@@ -570,7 +641,10 @@ class DashboardView extends GetView<DashboardController> {
                     width: 150.w,
                     height: 35.w,
                     child: ElevatedButton(
-                      onPressed: controller.currentPage.value < (controller.filteredData.length / controller.itemsPerPage.value).ceil()
+                      onPressed: controller.currentPage.value <
+                              (controller.filteredData.length /
+                                      controller.itemsPerPage.value)
+                                  .ceil()
                           ? () {
                               controller.currentPage.value++;
                             }
@@ -715,7 +789,8 @@ class DashboardView extends GetView<DashboardController> {
   // }
 
 // date picker
-  Widget buildCustomDatePicker(String title, BuildContext context, bool isFrom) {
+  Widget buildCustomDatePicker(
+      String title, BuildContext context, bool isFrom) {
     return Container(
       margin: EdgeInsets.only(top: 10.h),
       child: Column(
@@ -745,7 +820,9 @@ class DashboardView extends GetView<DashboardController> {
                     padding: EdgeInsets.symmetric(horizontal: 15.w),
                     child: Obx(
                       () => Text(
-                        isFrom ? controller.startdate.value : controller.enddate.value,
+                        isFrom
+                            ? controller.startdate.value
+                            : controller.enddate.value,
                         // '${pickedDateFrom.day} / ${pickedDateFrom.month} / ${pickedDateFrom.year}'
 
                         textAlign: TextAlign.right,
@@ -761,7 +838,9 @@ class DashboardView extends GetView<DashboardController> {
                     ),
                     tooltip: 'Tap to open date picker',
                     onPressed: () {
-                      isFrom ? controller.fromDate(context) : controller.toDate(context);
+                      isFrom
+                          ? controller.fromDate(context)
+                          : controller.toDate(context);
                     },
                   ),
                 ],
@@ -838,20 +917,24 @@ class DashboardView extends GetView<DashboardController> {
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
                       onTap: () {
-                        controller.selectedcompany.value = controller.fcompanylist[index].dropValue;
+                        controller.selectedcompany.value =
+                            controller.fcompanylist[index].dropValue;
 
-                        controller.idofselectedcompany.value = controller.fcompanylist[index].dropId.toString();
+                        controller.idofselectedcompany.value =
+                            controller.fcompanylist[index].dropId.toString();
 
                         log(controller.fcompanylist[index].dropValue);
                         Get.back();
 
-                        controller.fetchSite(controller.idofselectedcompany.value.toString());
+                        controller.fetchSite(
+                            controller.idofselectedcompany.value.toString());
                       },
                       leading: Icon(
                         Icons.add,
                         size: 20.w,
                       ),
-                      title: appDashBoardlblTxt(controller.fcompanylist[index].dropValue),
+                      title: appDashBoardlblTxt(
+                          controller.fcompanylist[index].dropValue),
                     );
                   },
                 ),
@@ -894,20 +977,24 @@ class DashboardView extends GetView<DashboardController> {
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
                       onTap: () {
-                        controller.selectedsite.value = controller.fsitelist[index].dropValue;
+                        controller.selectedsite.value =
+                            controller.fsitelist[index].dropValue;
 
-                        controller.idofselectedsite.value = controller.fsitelist[index].dropId.toString();
+                        controller.idofselectedsite.value =
+                            controller.fsitelist[index].dropId.toString();
 
                         log(controller.fsitelist[index].dropId);
                         Get.back();
 
-                        controller.fetchContarct(controller.idofselectedsite.value.toString());
+                        controller.fetchContarct(
+                            controller.idofselectedsite.value.toString());
                       },
                       leading: Icon(
                         Icons.add,
                         size: 20.w,
                       ),
-                      title: appDashBoardlblTxt(controller.fsitelist[index].dropValue),
+                      title: appDashBoardlblTxt(
+                          controller.fsitelist[index].dropValue),
                     );
                   },
                 ),
@@ -950,9 +1037,11 @@ class DashboardView extends GetView<DashboardController> {
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
                       onTap: () {
-                        controller.selectedcontract.value = controller.fcontarctlist[index].dropValue;
+                        controller.selectedcontract.value =
+                            controller.fcontarctlist[index].dropValue;
 
-                        controller.idofselectedcontarct.value = controller.fcontarctlist[index].dropId.toString();
+                        controller.idofselectedcontarct.value =
+                            controller.fcontarctlist[index].dropId.toString();
 
                         log(controller.fcontarctlist[index].dropId);
                         Get.back();
@@ -961,7 +1050,8 @@ class DashboardView extends GetView<DashboardController> {
                         Icons.add,
                         size: 20.w,
                       ),
-                      title: appDashBoardlblTxt(controller.fcontarctlist[index].dropValue),
+                      title: appDashBoardlblTxt(
+                          controller.fcontarctlist[index].dropValue),
                     );
                   },
                 ),
@@ -988,9 +1078,11 @@ class DashboardView extends GetView<DashboardController> {
           itemBuilder: (BuildContext context, int index) {
             return ListTile(
               onTap: () {
-                controller.selectedorderby.value = controller.orderbylist[index]['drop_value'];
+                controller.selectedorderby.value =
+                    controller.orderbylist[index]['drop_value'];
 
-                controller.idofselectedoderby.value = controller.orderbylist[index]['drop_id'];
+                controller.idofselectedoderby.value =
+                    controller.orderbylist[index]['drop_id'];
 
                 log(controller.orderbylist[index]['drop_value']);
                 Get.back();
@@ -999,7 +1091,8 @@ class DashboardView extends GetView<DashboardController> {
                 Icons.add,
                 size: 20.w,
               ),
-              title: appDashBoardlblTxt(controller.orderbylist[index]['drop_value']),
+              title: appDashBoardlblTxt(
+                  controller.orderbylist[index]['drop_value']),
             );
           },
         ),
@@ -1035,9 +1128,11 @@ class DashboardView extends GetView<DashboardController> {
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
                       onTap: () {
-                        controller.selectedengineer.value = controller.fengineerlist[index].dropValue;
+                        controller.selectedengineer.value =
+                            controller.fengineerlist[index].dropValue;
 
-                        controller.idofselectedengineer.value = controller.fengineerlist[index].dropId.toString();
+                        controller.idofselectedengineer.value =
+                            controller.fengineerlist[index].dropId.toString();
 
                         log(controller.fengineerlist[index].dropId);
                         Get.back();
@@ -1046,7 +1141,8 @@ class DashboardView extends GetView<DashboardController> {
                         Icons.add,
                         size: 20.w,
                       ),
-                      title: appDashBoardlblTxt(controller.fengineerlist[index].dropValue),
+                      title: appDashBoardlblTxt(
+                          controller.fengineerlist[index].dropValue),
                     );
                   },
                 ),

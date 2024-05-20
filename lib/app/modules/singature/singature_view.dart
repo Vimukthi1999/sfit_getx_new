@@ -30,7 +30,9 @@ class SingatureView extends GetView<SingatureController> {
         ),
         body: Column(
           children: [
-            buildPreviewHeader(context, 'Service Record Form', controller.openDrower),
+            // buildPreviewHeader(context, 'Service Record Form', controller.openDrower),
+            buildSignPreviewHeader(
+                context, 'Service Record Form', controller.openDrower),
             Expanded(
               child: ListView(
                 physics: BouncingScrollPhysics(),
@@ -63,7 +65,8 @@ class SingatureView extends GetView<SingatureController> {
                                 // visible: !controller.clientSignPad.value,
                                 visible: controller.engineerSignPad.value,
                                 child: Card(
-                                  margin: EdgeInsets.symmetric(horizontal: 30.h).copyWith(bottom: 5.h),
+                                  margin: EdgeInsets.symmetric(horizontal: 30.h)
+                                      .copyWith(bottom: 5.h),
                                   color: const Color(0xffff0f0f0),
                                   shadowColor: Colors.black,
                                   elevation: 2.w,
@@ -78,7 +81,8 @@ class SingatureView extends GetView<SingatureController> {
                                           color: Colors.white,
                                           height: 50.h,
                                           child: Padding(
-                                            padding: EdgeInsets.only(left: 10.w),
+                                            padding:
+                                                EdgeInsets.only(left: 10.w),
                                             child: Row(
                                               children: [
                                                 FaIcon(
@@ -86,7 +90,8 @@ class SingatureView extends GetView<SingatureController> {
                                                   size: 20.w,
                                                 ),
                                                 SizedBox(width: 10.w),
-                                                normaltxt('Engineer\'s Signature')
+                                                normaltxt(
+                                                    'Engineer\'s Signature')
                                               ],
                                             ),
                                           ),
@@ -100,11 +105,13 @@ class SingatureView extends GetView<SingatureController> {
                                           // color: Colors.red,
                                           child: SfSignaturePad(
                                             backgroundColor: Colors.white,
-                                            key: controller.engineersignatureGlobalKey,
+                                            key: controller
+                                                .engineersignatureGlobalKey,
                                             strokeColor: Colors.blue,
                                             minimumStrokeWidth: 3.w,
                                             maximumStrokeWidth: 3.w,
-                                            onDrawStart: controller.handleOnDrawStart,
+                                            onDrawStart:
+                                                controller.handleOnDrawStart,
                                           ),
                                         ),
                                       ),
@@ -127,11 +134,13 @@ class SingatureView extends GetView<SingatureController> {
                                                 style: BorderStyle.solid,
                                               )),
                                               child: Padding(
-                                                padding: EdgeInsets.only(left: 10.w),
+                                                padding:
+                                                    EdgeInsets.only(left: 10.w),
                                                 child: TextField(
                                                   decoration: InputDecoration(),
                                                   maxLines: 3,
-                                                  controller: controller.reasoncontroller,
+                                                  controller: controller
+                                                      .reasoncontroller,
                                                 ),
                                               ),
                                             ),
@@ -140,29 +149,41 @@ class SingatureView extends GetView<SingatureController> {
                                       ),
 
                                       Padding(
-                                        padding: EdgeInsets.only(right: 15.w, bottom: 8.h),
+                                        padding: EdgeInsets.only(
+                                            right: 15.w, bottom: 8.h),
                                         child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.end,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
                                           children: [
                                             Container(
                                                 height: 45.w,
                                                 width: 50.w,
                                                 decoration: BoxDecoration(
                                                   color: Colors.grey[50],
-                                                  borderRadius: BorderRadius.circular(5.r),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          5.r),
                                                 ),
                                                 child: IconButton(
                                                     onPressed: () {
-                                                      controller.clearEngineerPad();
+                                                      controller
+                                                          .clearEngineerPad();
                                                     },
                                                     icon: FaIcon(
                                                       FontAwesomeIcons.eraser,
                                                       size: 30.w,
                                                     ))),
                                             SizedBox(width: 20.w),
-                                            submitButton(Theme.of(context).primaryColor, () {
-                                              controller.saveEngeerSign(argumentData["reqno"].toString());
-                                            }, 'Submit Signature', controller.isEngSignLoading.value),
+                                            submitButton(
+                                                Theme.of(context).primaryColor,
+                                                () {
+                                              controller.saveEngeerSign(
+                                                  argumentData["reqno"]
+                                                      .toString());
+                                            },
+                                                'Submit Signature',
+                                                controller
+                                                    .isEngSignLoading.value),
                                           ],
                                         ),
                                       )
@@ -178,7 +199,8 @@ class SingatureView extends GetView<SingatureController> {
                               () => Visibility(
                                 visible: controller.clientSignPad.value,
                                 child: Card(
-                                  margin: EdgeInsets.symmetric(horizontal: 30.h).copyWith(bottom: 5.h),
+                                  margin: EdgeInsets.symmetric(horizontal: 30.h)
+                                      .copyWith(bottom: 5.h),
                                   color: const Color(0xffff0f0f0),
                                   shadowColor: Colors.black,
                                   elevation: 2.w,
@@ -193,7 +215,8 @@ class SingatureView extends GetView<SingatureController> {
                                           color: Colors.white,
                                           height: 50.h,
                                           child: Padding(
-                                            padding: EdgeInsets.only(left: 10.w),
+                                            padding:
+                                                EdgeInsets.only(left: 10.w),
                                             child: Row(
                                               children: [
                                                 FaIcon(
@@ -215,11 +238,13 @@ class SingatureView extends GetView<SingatureController> {
                                           // color: Colors.red,
                                           child: SfSignaturePad(
                                             backgroundColor: Colors.white,
-                                            key: controller.clientsignatureGlobalKey,
+                                            key: controller
+                                                .clientsignatureGlobalKey,
                                             strokeColor: Colors.blue,
                                             minimumStrokeWidth: 3.w,
                                             maximumStrokeWidth: 3.w,
-                                            onDrawStart: controller.handleOnDrawStartCli,
+                                            onDrawStart:
+                                                controller.handleOnDrawStartCli,
                                           ),
                                         ),
                                       ),
@@ -234,7 +259,8 @@ class SingatureView extends GetView<SingatureController> {
                                             style: BorderStyle.solid,
                                           )),
                                           child: Padding(
-                                            padding: EdgeInsets.only(left: 10.w),
+                                            padding:
+                                                EdgeInsets.only(left: 10.w),
                                             child: TextField(
                                               decoration: InputDecoration(
                                                 hintText: "Customer Name",
@@ -243,37 +269,51 @@ class SingatureView extends GetView<SingatureController> {
                                                 ),
                                               ),
                                               style: TextStyle(fontSize: 16.sp),
-                                              textInputAction: TextInputAction.done,
+                                              textInputAction:
+                                                  TextInputAction.done,
                                               maxLines: 1,
-                                              controller: controller.cusnamecontroller,
+                                              controller:
+                                                  controller.cusnamecontroller,
                                             ),
                                           ),
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsets.only(right: 15.w, bottom: 8.h),
+                                        padding: EdgeInsets.only(
+                                            right: 15.w, bottom: 8.h),
                                         child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.end,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
                                           children: [
                                             Container(
                                                 height: 45.w,
                                                 width: 50.w,
                                                 decoration: BoxDecoration(
                                                   color: Colors.grey[50],
-                                                  borderRadius: BorderRadius.circular(5.r),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          5.r),
                                                 ),
                                                 child: IconButton(
                                                     onPressed: () {
-                                                      controller.clearClientPad();
+                                                      controller
+                                                          .clearClientPad();
                                                     },
                                                     icon: FaIcon(
                                                       FontAwesomeIcons.eraser,
                                                       size: 30.w,
                                                     ))),
                                             SizedBox(width: 20.w),
-                                            submitButton(Theme.of(context).primaryColor, () {
-                                              controller.saveClientSign(argumentData["reqno"].toString());
-                                            }, 'Submit Signature', controller.isCliSignLoading.value),
+                                            submitButton(
+                                                Theme.of(context).primaryColor,
+                                                () {
+                                              controller.saveClientSign(
+                                                  argumentData["reqno"]
+                                                      .toString());
+                                            },
+                                                'Submit Signature',
+                                                controller
+                                                    .isCliSignLoading.value),
                                           ],
                                         ),
                                       )
@@ -342,7 +382,10 @@ class SingatureView extends GetView<SingatureController> {
         child: Text(
           reqno,
           textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.black26, fontWeight: FontWeight.bold, fontSize: 16.sp),
+          style: TextStyle(
+              color: Colors.black26,
+              fontWeight: FontWeight.bold,
+              fontSize: 16.sp),
         ),
       ),
     );
@@ -358,7 +401,8 @@ class SingatureView extends GetView<SingatureController> {
     );
   }
 
-  Widget submitButton(Color? color, void Function() click, String btntxt, bool needLoad) {
+  Widget submitButton(
+      Color? color, void Function() click, String btntxt, bool needLoad) {
     return InkWell(
       onTap: click,
       child: Container(

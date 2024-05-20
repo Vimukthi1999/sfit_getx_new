@@ -1519,8 +1519,6 @@ class ServiceformController extends GetxController {
         break;
 
       case 3:
-
-        /// incomplete  -- 2024-05-14 - need chack
         selectedcompany.value = 'Choose one';
         idofselectedcompany.value = '';
 
@@ -1558,8 +1556,6 @@ class ServiceformController extends GetxController {
         break;
 
       case 4:
-
-        /// incomplete  -- 2024-05-14 - need chack
         assetcontroller.clear();
 
         setCompany.value = 'N/A';

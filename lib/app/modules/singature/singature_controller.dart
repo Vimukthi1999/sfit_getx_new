@@ -89,18 +89,25 @@ class SingatureController extends GetxController {
   saveEngeerSign(String reqNo) async {
     if (isSignedEng) {
       isEngSignLoading.value = true;
-      final data = await engineersignatureGlobalKey.currentState!.toImage(pixelRatio: 3.0);
+      final data = await engineersignatureGlobalKey.currentState!
+          .toImage(pixelRatio: 3.0);
       final bytes = await data.toByteData(format: ui.ImageByteFormat.png);
 
       Converted64EngSign = base64.encode(bytes!.buffer.asUint8List());
 
-      await dioClient.signPost(AppUrl.submitalldata, 'E', toJson('E', reqNo)).then((value) {
+      await dioClient
+          .signPost(AppUrl.submitalldata, 'E', toJson('E', reqNo))
+          .then((value) {
         log('>><<$value');
         if (value['success']) {
           isEngSignLoading.value = false;
           Utils.appDialog('Success', value['messages']['Signature'], () {
-            clientSignPad.value = true;
+            if (isclientnot.value) {
+              Get.back();
+              Get.offAllNamed(Routes.DASHBOARD);
+            }
             engineerSignPad.value = false;
+            clientSignPad.value = true;
             Get.back();
           });
         } else {
@@ -121,12 +128,15 @@ class SingatureController extends GetxController {
   saveClientSign(String reqNo) async {
     if (isSignedCli) {
       isCliSignLoading.value = true;
-      final data = await clientsignatureGlobalKey.currentState!.toImage(pixelRatio: 3.0);
+      final data =
+          await clientsignatureGlobalKey.currentState!.toImage(pixelRatio: 3.0);
       final bytes = await data.toByteData(format: ui.ImageByteFormat.png);
 
       Converted64ClientSign = base64.encode(bytes!.buffer.asUint8List());
 
-      await dioClient.signPost(AppUrl.submitalldata, 'C', toJson('C', reqNo)).then((value) {
+      await dioClient
+          .signPost(AppUrl.submitalldata, 'C', toJson('C', reqNo))
+          .then((value) {
         log('>><<$value');
         if (value['success']) {
           isCliSignLoading.value = false;
