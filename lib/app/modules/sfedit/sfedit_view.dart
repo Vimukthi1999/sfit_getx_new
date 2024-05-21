@@ -39,7 +39,8 @@ class SfeditView extends GetView<SfeditController> {
         body: Obx(
           () => Column(
             children: [
-              buildPreviewHeader(context, 'Edit Field Service Entries', controller.openDrower),
+              buildPreviewHeader(
+                  context, 'Edit Field Service Entries', controller.openDrower),
               Expanded(
                 child: ListView(
                   physics: BouncingScrollPhysics(),
@@ -65,12 +66,25 @@ class SfeditView extends GetView<SfeditController> {
                               Row(
                                 children: [
                                   Expanded(
-                                    child: Container(child: item(true, 'Company Name', controller.Obj.value.data?.svcData[0].companyName.toString() ?? 'N/A')),
+                                    child: Container(
+                                        child: item(
+                                            true,
+                                            'Company Name',
+                                            controller.Obj.value.data
+                                                    ?.svcData[0].companyName
+                                                    .toString() ??
+                                                'N/A')),
                                   ),
                                   SizedBox(width: 10.w),
                                   Expanded(
                                     child: Container(
-                                      child: item(true, 'Site', controller.Obj.value.data?.svcData[0].siteName.toString() ?? 'N/A'),
+                                      child: item(
+                                          true,
+                                          'Site',
+                                          controller.Obj.value.data?.svcData[0]
+                                                  .siteName
+                                                  .toString() ??
+                                              'N/A'),
                                     ),
                                   ),
                                   // const SizedBox(width: 5),
@@ -80,11 +94,23 @@ class SfeditView extends GetView<SfeditController> {
                               Row(
                                 children: [
                                   Expanded(
-                                    child: item(true, 'Contracts', controller.Obj.value.data?.svcData[0].contractDescription.toString() ?? 'N/A'),
+                                    child: item(
+                                        true,
+                                        'Contracts',
+                                        controller.Obj.value.data?.svcData[0]
+                                                .contractDescription
+                                                .toString() ??
+                                            'N/A'),
                                   ),
                                   SizedBox(width: 10.w),
                                   Expanded(
-                                    child: item(false, 'Asset No', controller.Obj.value.data?.svcData[0].sfitAssetNo.toString() ?? 'N/A'),
+                                    child: item(
+                                        false,
+                                        'Asset No',
+                                        controller.Obj.value.data?.svcData[0]
+                                                .sfitAssetNo
+                                                .toString() ??
+                                            'N/A'),
                                   )
                                 ],
                               )
@@ -115,8 +141,13 @@ class SfeditView extends GetView<SfeditController> {
                                 children: [
                                   Expanded(
                                     child: Container(
-                                      padding: EdgeInsets.only(left: 10.w, bottom: 20.w),
-                                      child: buildformDateTimePicker('Request Date', controller.requestDate.value, context, true, () {
+                                      padding: EdgeInsets.only(
+                                          left: 10.w, bottom: 20.w),
+                                      child: buildformDateTimePicker(
+                                          'Request Date',
+                                          controller.requestDate.value,
+                                          context,
+                                          true, () {
                                         controller.pickRequestDate(context);
                                       }),
                                     ),
@@ -124,20 +155,37 @@ class SfeditView extends GetView<SfeditController> {
                                   ),
                                   SizedBox(width: 10.w),
                                   Expanded(
-                                    child: item(true, 'Request No', controller.Obj.value.data?.svcData[0].requisitionNo.toString() ?? 'N/A'),
+                                    child: item(
+                                        true,
+                                        'Request No',
+                                        controller.Obj.value.data?.svcData[0]
+                                                .requisitionNo
+                                                .toString() ??
+                                            'N/A'),
                                   ),
                                 ],
                               ),
                               Row(
                                 children: [
                                   Expanded(
-                                    child: item(true, 'Request Time', controller.Obj.value.data?.svcData[0].requestedTime.toString() ?? 'N/A'),
+                                    child: item(
+                                        true,
+                                        'Request Time',
+                                        controller.Obj.value.data?.svcData[0]
+                                                .requestedTime
+                                                .toString() ??
+                                            'N/A'),
                                   ),
                                   SizedBox(width: 10.w),
                                   Expanded(
                                     child: Container(
-                                      padding: EdgeInsets.only(left: 10.w, bottom: 20.w),
-                                      child: buildformDateTimePicker('Service Date', controller.serviceDate.value, context, true, () {
+                                      padding: EdgeInsets.only(
+                                          left: 10.w, bottom: 20.w),
+                                      child: buildformDateTimePicker(
+                                          'Service Date',
+                                          controller.serviceDate.value,
+                                          context,
+                                          true, () {
                                         controller.pickServiceDate(context);
                                       }),
                                     ),
@@ -154,12 +202,17 @@ class SfeditView extends GetView<SfeditController> {
                                   SizedBox(width: 20.w),
                                   Expanded(
                                     child: Container(
-                                      child: Obx(() => buildformAddLaterTimePicker(
-                                          'Start Time',
-                                          controller.startTime.value,
-                                          startTime(context, controller.isStartTimeAddLater.value, () {
-                                            controller.pickStartTime(context);
-                                          }))),
+                                      child: Obx(() =>
+                                          buildformAddLaterTimePicker(
+                                              'Start Time',
+                                              controller.startTime.value,
+                                              startTime(
+                                                  context,
+                                                  controller.isStartTimeAddLater
+                                                      .value, () {
+                                                controller
+                                                    .pickStartTime(context);
+                                              }))),
                                     ),
                                     // child: item(true, 'Start Time', controller.Obj.value.data?.svcData[0].noStarttime.toString() == '1' ? 'To Be Determined' : controller.Obj.value.data?.svcData[0].startTime.toString() ?? 'N/A'),
                                   ),
@@ -170,9 +223,11 @@ class SfeditView extends GetView<SfeditController> {
                                 children: [
                                   Expanded(
                                     child: Container(
-                                      padding: EdgeInsets.only(left: 10.w, bottom: 20.w),
+                                      padding: EdgeInsets.only(
+                                          left: 10.w, bottom: 20.w),
                                       child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           appreqtxt('Priority Level'),
                                           Container(
@@ -185,35 +240,62 @@ class SfeditView extends GetView<SfeditController> {
                                                 style: BorderStyle.solid,
                                               )),
                                               child: Align(
-                                                  alignment: Alignment.centerLeft,
+                                                  alignment:
+                                                      Alignment.centerLeft,
                                                   child: Obx(
                                                     () => Row(
-                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
                                                       children: [
                                                         InkWell(
                                                           onTap: () {
-                                                            controller.dePriority(controller.priority.value);
+                                                            controller
+                                                                .dePriority(
+                                                                    controller
+                                                                        .priority
+                                                                        .value);
                                                           },
                                                           child: Icon(
-                                                            Icons.indeterminate_check_box_rounded,
+                                                            Icons
+                                                                .indeterminate_check_box_rounded,
                                                             size: 55.w,
-                                                            color: controller.priority.value == 1 ? Colors.grey : Colors.black,
+                                                            color: controller
+                                                                        .priority
+                                                                        .value ==
+                                                                    1
+                                                                ? Colors.grey
+                                                                : Colors.black,
                                                           ),
                                                         ),
                                                         Container(
                                                           child: Text(
-                                                            controller.priority.value.toString(),
-                                                            style: TextStyle(fontSize: 18.sp),
+                                                            controller
+                                                                .priority.value
+                                                                .toString(),
+                                                            style: TextStyle(
+                                                                fontSize:
+                                                                    18.sp),
                                                           ),
                                                         ),
                                                         InkWell(
                                                           onTap: () {
-                                                            controller.inPriority(controller.priority.value);
+                                                            controller
+                                                                .inPriority(
+                                                                    controller
+                                                                        .priority
+                                                                        .value);
                                                           },
                                                           child: Icon(
-                                                            Icons.add_box_rounded,
+                                                            Icons
+                                                                .add_box_rounded,
                                                             size: 55.w,
-                                                            color: controller.priority.value == 3 ? Colors.grey : Colors.black,
+                                                            color: controller
+                                                                        .priority
+                                                                        .value ==
+                                                                    3
+                                                                ? Colors.grey
+                                                                : Colors.black,
                                                           ),
                                                         ),
                                                       ],
@@ -228,12 +310,16 @@ class SfeditView extends GetView<SfeditController> {
                                   SizedBox(width: 10.w),
                                   Expanded(
                                     child: Container(
-                                      child: Obx(() => buildformAddLaterTimePicker(
-                                          'End Time',
-                                          controller.endTime.value,
-                                          endTime(context, controller.isEndTimeAddLater.value, () {
-                                            controller.pickEndTime(context);
-                                          }))),
+                                      child: Obx(() =>
+                                          buildformAddLaterTimePicker(
+                                              'End Time',
+                                              controller.endTime.value,
+                                              endTime(
+                                                  context,
+                                                  controller.isEndTimeAddLater
+                                                      .value, () {
+                                                controller.pickEndTime(context);
+                                              }))),
                                     ),
                                     // child: item(true, 'End Time', controller.Obj.value.data?.svcData[0].noEndtime.toString() == '1' ? 'To Be Determined' : controller.Obj.value.data?.svcData[0].endTime.toString() ?? 'N/A'),
                                   ),
@@ -243,18 +329,31 @@ class SfeditView extends GetView<SfeditController> {
                               Row(
                                 children: [
                                   Expanded(
-                                    child: item(false, 'Engineer', controller.Obj.value.data?.svcData[0].empname.toString() ?? 'N/A'),
+                                    child: item(
+                                        false,
+                                        'Engineer',
+                                        controller.Obj.value.data?.svcData[0]
+                                                .empname
+                                                .toString() ??
+                                            'N/A'),
                                   ),
                                   SizedBox(width: 10.w),
                                   Expanded(
-                                    child: item(true, 'Travel Time', controller.Obj.value.data?.svcData[0].travelTime.toString() ?? 'N/A'),
+                                    child: item(
+                                        true,
+                                        'Travel Time',
+                                        controller.Obj.value.data?.svcData[0]
+                                                .travelTime
+                                                .toString() ??
+                                            'N/A'),
                                   ),
                                 ],
                               ),
                               Row(
                                 children: [
                                   Expanded(
-                                    child: item(false, 'Total Hours Changed', controller.totaltiemcalculated.value),
+                                    child: item(false, 'Total Hours Changed',
+                                        controller.totaltiemcalculated.value),
                                   ),
                                   SizedBox(width: 10.w),
                                   Expanded(
@@ -270,11 +369,21 @@ class SfeditView extends GetView<SfeditController> {
                               Row(
                                 children: [
                                   Expanded(
-                                    child: item(false, 'Product Type', controller.desProductType.value.toString()),
+                                    child: item(
+                                        false,
+                                        'Product Type',
+                                        controller.desProductType.value
+                                            .toString()),
                                   ),
                                   SizedBox(width: 10.w),
                                   Expanded(
-                                    child: item(true, 'Serial/Ticket Number', controller.Obj.value.data?.svcData[0].srlIntgrtd.toString() ?? 'N/A'),
+                                    child: item(
+                                        true,
+                                        'Serial/Ticket Number',
+                                        controller.Obj.value.data?.svcData[0]
+                                                .ticketId
+                                                .toString() ??
+                                            'N/A'),
                                   ),
                                 ],
                               ),
@@ -282,14 +391,20 @@ class SfeditView extends GetView<SfeditController> {
                                 children: [
                                   Expanded(
                                     child: Container(
-                                      padding: EdgeInsets.only(left: 10.w, bottom: 20.w),
+                                      padding: EdgeInsets.only(
+                                          left: 10.w, bottom: 20.w),
                                       child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           appreqtxt('Type of hours'),
                                           Obx(
-                                            () => customDropDowns(controller.selectedtypeofhours.value, () {
-                                              Future.delayed(const Duration(seconds: 1), () {
+                                            () => customDropDowns(
+                                                controller.selectedtypeofhours
+                                                    .value, () {
+                                              Future.delayed(
+                                                  const Duration(seconds: 1),
+                                                  () {
                                                 dpTypeofHoursWidget();
                                               });
                                             }),
@@ -302,7 +417,8 @@ class SfeditView extends GetView<SfeditController> {
                                   SizedBox(width: 20.w),
                                   Expanded(
                                     child: Container(
-                                      child: item(false, 'Labour', controller.valueofLabourHours.value),
+                                      child: item(false, 'Labour',
+                                          controller.valueofLabourHours.value),
                                     ),
                                   ),
                                 ],
@@ -311,14 +427,20 @@ class SfeditView extends GetView<SfeditController> {
                                 children: [
                                   Expanded(
                                     child: Container(
-                                      padding: EdgeInsets.only(left: 10.w, bottom: 20.w),
+                                      padding: EdgeInsets.only(
+                                          left: 10.w, bottom: 20.w),
                                       child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           appreqtxt('To be paid in'),
                                           Obx(
-                                            () => customDropDowns(controller.selectedtobepaidin.value, () {
-                                              Future.delayed(const Duration(seconds: 1), () {
+                                            () => customDropDowns(
+                                                controller.selectedtobepaidin
+                                                    .value, () {
+                                              Future.delayed(
+                                                  const Duration(seconds: 1),
+                                                  () {
                                                 dpToBePaidInWidget();
                                               });
                                             }),
@@ -335,11 +457,22 @@ class SfeditView extends GetView<SfeditController> {
                                 ],
                               ),
 
-                              buildexpandItems(true, 'Problem', 'As Stated or Requested by the Client', controller.problemcontroller),
-                              buildexpandItems(false, 'Findings', 'Initial Investigation', controller.findingcontroller),
-                              buildexpandItems(false, 'Work Undertaken', '', controller.workUndercontroller),
-                              buildexpandItems(false, 'Recommendations', '', controller.recommendationcontroller),
-                              buildexpandItems(false, 'Action Task', '', controller.actiontaskcontroller),
+                              buildexpandItems(
+                                  true,
+                                  'Problem',
+                                  'As Stated or Requested by the Client',
+                                  controller.problemcontroller),
+                              buildexpandItems(
+                                  false,
+                                  'Findings',
+                                  'Initial Investigation',
+                                  controller.findingcontroller),
+                              buildexpandItems(false, 'Work Undertaken', '',
+                                  controller.workUndercontroller),
+                              buildexpandItems(false, 'Recommendations', '',
+                                  controller.recommendationcontroller),
+                              buildexpandItems(false, 'Action Task', '',
+                                  controller.actiontaskcontroller),
 
                               SizedBox(height: 5.h),
 
@@ -349,25 +482,36 @@ class SfeditView extends GetView<SfeditController> {
                                   Padding(
                                     padding: EdgeInsets.all(10.w),
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        appcardviewTitle('PART COST FOR SERVICE FORM'),
+                                        appcardviewTitle(
+                                            'PART COST FOR SERVICE FORM'),
                                         SizedBox(height: 25.h),
                                         Row(
                                           children: [
                                             Expanded(
                                               child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
                                                 children: [
                                                   appnormaltxt('Items'),
                                                   Obx(
-                                                    () => customDropDowns(controller.selecteditem.value, () async {
+                                                    () => customDropDowns(
+                                                        controller.selecteditem
+                                                            .value, () async {
                                                       // await controller.fetchItems();
-                                                      controller.serialchips.clear();
+                                                      controller.serialchips
+                                                          .clear();
                                                       controller.filteritem('');
-                                                      controller.selecteditem.value = 'Choose one';
-                                                      controller.idofselecteditem.value = '';
-                                                      Future.delayed(const Duration(seconds: 1), () {
+                                                      controller.selecteditem
+                                                          .value = 'Choose one';
+                                                      controller
+                                                          .idofselecteditem
+                                                          .value = '';
+                                                      Future.delayed(
+                                                          const Duration(
+                                                              seconds: 1), () {
                                                         dpItemsWidget();
                                                       });
                                                     }),
@@ -378,24 +522,30 @@ class SfeditView extends GetView<SfeditController> {
                                             SizedBox(width: 10.w),
                                             Expanded(
                                               child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
                                                 children: [
-                                                  appnormaltxt('Search by Serials'),
+                                                  appnormaltxt(
+                                                      'Search by Serials'),
                                                   TextField(
                                                     // controller: _controller,
                                                     decoration: InputDecoration(
-                                                      hintText: "Search Serials",
+                                                      hintText:
+                                                          "Search Serials",
                                                       suffixIcon: Icon(
                                                         Icons.search_rounded,
                                                         size: 55.w,
                                                       ),
-                                                      border: OutlineInputBorder(
-                                                        borderRadius: BorderRadius.all(
+                                                      border:
+                                                          OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius.all(
                                                           Radius.circular(4.r),
                                                         ),
                                                       ),
                                                     ),
-                                                    style: TextStyle(fontSize: 16.sp),
+                                                    style: TextStyle(
+                                                        fontSize: 16.sp),
                                                   ),
                                                 ],
                                               ),
@@ -404,7 +554,9 @@ class SfeditView extends GetView<SfeditController> {
                                         ),
                                         SizedBox(height: 20.h),
                                         Container(
-                                          child: SingleChildScrollView(physics: BouncingScrollPhysics(), child: Obx(() => ChiperBox())),
+                                          child: SingleChildScrollView(
+                                              physics: BouncingScrollPhysics(),
+                                              child: Obx(() => ChiperBox())),
                                           width: Get.width,
                                           height: 200.h,
                                           decoration: BoxDecoration(
@@ -438,10 +590,22 @@ class SfeditView extends GetView<SfeditController> {
                                                   ),
                                                   Align(
                                                     child: Obx(() => Padding(
-                                                          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.w),
-                                                          child: appnormaltxt("Total Cost : " + controller.totalcost.value.toStringAsFixed(3)),
+                                                          padding: EdgeInsets
+                                                              .symmetric(
+                                                                  horizontal:
+                                                                      20.w,
+                                                                  vertical:
+                                                                      8.w),
+                                                          child: appnormaltxt(
+                                                              "Total Cost : " +
+                                                                  controller
+                                                                      .totalcost
+                                                                      .value
+                                                                      .toStringAsFixed(
+                                                                          3)),
                                                         )),
-                                                    alignment: Alignment.centerRight,
+                                                    alignment:
+                                                        Alignment.centerRight,
                                                   ),
                                                 ],
                                               ),
@@ -615,7 +779,8 @@ class SfeditView extends GetView<SfeditController> {
                 if (ischeck) {
                   controller.startTime.value = 'Add Later';
                   controller.sTime = '15000';
-                  controller.totaltiemcalculated.value = controller.calculateTotalTime();
+                  controller.totaltiemcalculated.value =
+                      controller.calculateTotalTime();
                 } else {
                   controller.startTime.value = 'hh:mm';
                 }
@@ -675,7 +840,8 @@ class SfeditView extends GetView<SfeditController> {
                 if (ischeck) {
                   controller.endTime.value = 'Add Later';
                   controller.eTime = '15000';
-                  controller.totaltiemcalculated.value = controller.calculateTotalTime();
+                  controller.totaltiemcalculated.value =
+                      controller.calculateTotalTime();
                 } else {
                   controller.endTime.value = 'hh:mm';
                 }
@@ -846,7 +1012,9 @@ class SfeditView extends GetView<SfeditController> {
 
                         print(controller.serialchips.length + 1);
 
-                        controller.serialchips.add(SerialChips(index: controller.predicchipscount, serial_no: reSerialNo));
+                        controller.serialchips.add(SerialChips(
+                            index: controller.predicchipscount,
+                            serial_no: reSerialNo));
 
                         controller.wshopinfo.removeAt(index);
 
@@ -854,7 +1022,6 @@ class SfeditView extends GetView<SfeditController> {
                         controller.totalCost();
 
                         // blistOfDrofDownValues.add(DropDownTypesSerialNumbers(index: 1000,serial_no: 'dasun'));
-
                       } catch (e) {
                         print(e.toString());
                       }
@@ -1002,7 +1169,8 @@ class SfeditView extends GetView<SfeditController> {
     );
   }
 
-  Widget buildexpandItems(bool isreq, String title, String hint, TextEditingController txtcontroller) {
+  Widget buildexpandItems(bool isreq, String title, String hint,
+      TextEditingController txtcontroller) {
     return Padding(
       padding: EdgeInsets.only(left: 10.w, bottom: 15.w),
       child: ConstrainedBox(
@@ -1071,11 +1239,21 @@ class SfeditView extends GetView<SfeditController> {
                     itemBuilder: (BuildContext context, int index) {
                       return ListTile(
                         onTap: () {
-                          controller.selectedtypeofhours.value = controller.ftypeofhourslist[index].dropValue;
+                          controller.selectedtypeofhours.value =
+                              controller.ftypeofhourslist[index].dropValue;
 
-                          controller.idofselectedtypeofhours.value = controller.ftypeofhourslist[index].dropId.toString();
+                          controller.idofselectedtypeofhours.value = controller
+                              .ftypeofhourslist[index].dropId
+                              .toString();
 
-                          controller.getLabourHours(controller.idofselectedtypeofhours.value, controller.idofselectedcontarct, controller.totaltiemcalculated.value == 'To Be Determined' ? '' : controller.totaltiemcalculated.value.toString());
+                          controller.getLabourHours(
+                              controller.idofselectedtypeofhours.value,
+                              controller.idofselectedcontarct,
+                              controller.totaltiemcalculated.value ==
+                                      'To Be Determined'
+                                  ? ''
+                                  : controller.totaltiemcalculated.value
+                                      .toString());
 
                           log(controller.ftypeofhourslist[index].dropValue);
                           Get.back();
@@ -1084,7 +1262,8 @@ class SfeditView extends GetView<SfeditController> {
                           Icons.add,
                           size: 20.w,
                         ),
-                        title: appDashBoardlblTxt(controller.ftypeofhourslist[index].dropValue),
+                        title: appDashBoardlblTxt(
+                            controller.ftypeofhourslist[index].dropValue),
                       );
                     },
                   ),
@@ -1126,9 +1305,12 @@ class SfeditView extends GetView<SfeditController> {
                     itemBuilder: (BuildContext context, int index) {
                       return ListTile(
                         onTap: () {
-                          controller.selectedtobepaidin.value = controller.ftobepaidinlist[index].dropValue;
+                          controller.selectedtobepaidin.value =
+                              controller.ftobepaidinlist[index].dropValue;
 
-                          controller.idofselectedtobepaidin.value = controller.ftobepaidinlist[index].dropId.toString();
+                          controller.idofselectedtobepaidin.value = controller
+                              .ftobepaidinlist[index].dropId
+                              .toString();
 
                           log(controller.ftobepaidinlist[index].dropValue);
                           Get.back();
@@ -1137,7 +1319,8 @@ class SfeditView extends GetView<SfeditController> {
                           Icons.add,
                           size: 20.w,
                         ),
-                        title: appDashBoardlblTxt(controller.ftobepaidinlist[index].dropValue),
+                        title: appDashBoardlblTxt(
+                            controller.ftobepaidinlist[index].dropValue),
                       );
                     },
                   ),
@@ -1188,11 +1371,14 @@ class SfeditView extends GetView<SfeditController> {
                     itemBuilder: (BuildContext context, int index) {
                       return ListTile(
                         onTap: () {
-                          controller.selecteditem.value = controller.fitemslist[index].itemDes;
+                          controller.selecteditem.value =
+                              controller.fitemslist[index].itemDes;
 
-                          controller.idofselecteditem.value = controller.fitemslist[index].itemCode.toString();
+                          controller.idofselecteditem.value =
+                              controller.fitemslist[index].itemCode.toString();
 
-                          controller.searchBySeriels(controller.idofselecteditem.value);
+                          controller.searchBySeriels(
+                              controller.idofselecteditem.value);
 
                           log(controller.fitemslist[index].itemDes);
                           Get.back();
@@ -1201,7 +1387,8 @@ class SfeditView extends GetView<SfeditController> {
                           Icons.add,
                           size: 20.w,
                         ),
-                        title: appDashBoardlblTxt(controller.fitemslist[index].itemDes),
+                        title: appDashBoardlblTxt(
+                            controller.fitemslist[index].itemDes),
                       );
                     },
                   ),

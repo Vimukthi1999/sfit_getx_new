@@ -27,280 +27,432 @@ class SfviewView extends GetView<SfviewController> {
           height: Get.height,
           child: PreviewView(),
         ),
-        body: 
-            Obx(
-              () => Column(
-                children: [
-                  buildPreviewHeader(context, argumentData[1] == 'view' ? 'View Service Entries' : 'Delete Service Entries', controller.openDrower),
-                  Expanded(
-                    child: ListView(
-                      physics: BouncingScrollPhysics(),
-                      controller: controller.sfviewMainlist,
-                      children: [
-                        // add service record form
-                        Padding(
-                          padding: EdgeInsets.all(10.w),
-                          child: Card(
-                            shadowColor: Colors.black,
-                            elevation: 2.w,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.r),
-                            ),
-                            child: Padding(
-                              padding: EdgeInsets.all(10.w),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  // card title
-                                  appcardviewTitle('ADD SERVICE RECORD FORM'),
-                                  SizedBox(height: 20.h),
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: Container(child: item(true, 'Company Name', controller.Obj.value.data?.svcData[0].companyName.toString() ?? 'N/A')),
-                                      ),
-                                      SizedBox(width: 10.w),
-                                      Expanded(
-                                        child: Container(
-                                          child: item(true, 'Site', controller.Obj.value.data?.svcData[0].siteName.toString() ?? 'N/A'),
-                                        ),
-                                      ),
-                                      // const SizedBox(width: 5),
-                                    ],
-                                  ),
         
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: item(true, 'Contracts', controller.Obj.value.data?.svcData[0].contractDescription.toString() ?? 'N/A'),
-                                      ),
-                                      SizedBox(width: 10.w),
-                                      Expanded(
-                                        child: item(false, 'Asset No', controller.Obj.value.data?.svcData[0].sfitAssetNo.toString() ?? 'N/A'),
-                                      )
-                                    ],
+        body: Obx(
+          () => Column(
+            children: [
+              buildPreviewHeader(
+                  context,
+                  argumentData[1] == 'view'
+                      ? 'View Service Entries'
+                      : 'Delete Service Entries',
+                  controller.openDrower),
+              Expanded(
+                child: ListView(
+                  physics: BouncingScrollPhysics(),
+                  controller: controller.sfviewMainlist,
+                  children: [
+                    // add service record form
+                    Padding(
+                      padding: EdgeInsets.all(10.w),
+                      child: Card(
+                        shadowColor: Colors.black,
+                        elevation: 2.w,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.r),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.all(10.w),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              // card title
+                              appcardviewTitle('ADD SERVICE RECORD FORM'),
+                              SizedBox(height: 20.h),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Container(
+                                        child: item(
+                                            true,
+                                            'Company Name',
+                                            controller.Obj.value.data
+                                                    ?.svcData[0].companyName
+                                                    .toString() ??
+                                                'N/A')),
+                                  ),
+                                  SizedBox(width: 10.w),
+                                  Expanded(
+                                    child: Container(
+                                      child: item(
+                                          true,
+                                          'Site',
+                                          controller.Obj.value.data?.svcData[0]
+                                                  .siteName
+                                                  .toString() ??
+                                              'N/A'),
+                                    ),
+                                  ),
+                                  // const SizedBox(width: 5),
+                                ],
+                              ),
+
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: item(
+                                        true,
+                                        'Contracts',
+                                        controller.Obj.value.data?.svcData[0]
+                                                .contractDescription
+                                                .toString() ??
+                                            'N/A'),
+                                  ),
+                                  SizedBox(width: 10.w),
+                                  Expanded(
+                                    child: item(
+                                        false,
+                                        'Asset No',
+                                        controller.Obj.value.data?.svcData[0]
+                                                .sfitAssetNo
+                                                .toString() ??
+                                            'N/A'),
                                   )
                                 ],
-                              ),
-                            ),
+                              )
+                            ],
                           ),
                         ),
-                        // service recode form
-                        Padding(
+                      ),
+                    ),
+                    // service recode form
+                    Padding(
+                      padding: EdgeInsets.all(10.w),
+                      child: Card(
+                        shadowColor: Colors.black,
+                        elevation: 2.w,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.r),
+                        ),
+                        child: Padding(
                           padding: EdgeInsets.all(10.w),
-                          child: Card(
-                            shadowColor: Colors.black,
-                            elevation: 2.w,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.r),
-                            ),
-                            child: Padding(
-                              padding: EdgeInsets.all(10.w),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              // card title
+                              appcardviewTitle('ADD SERVICE RECORD FORM'),
+
+                              SizedBox(height: 20.w),
+                              Row(
                                 children: [
-                                  // card title
-                                  appcardviewTitle('ADD SERVICE RECORD FORM'),
-        
-                                  SizedBox(height: 20.w),
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: item(true, 'Request Date', controller.Obj.value.data?.svcData[0].requestedDate.toString() ?? 'N/A'),
-                                      ),
-                                      SizedBox(width: 10.w),
-                                      Expanded(
-                                        child: item(true, 'Request No', controller.Obj.value.data?.svcData[0].requisitionNo.toString() ?? 'N/A'),
-                                      ),
-                                    ],
+                                  Expanded(
+                                    child: item(
+                                        true,
+                                        'Request Date',
+                                        controller.Obj.value.data?.svcData[0]
+                                                .requestedDate
+                                                .toString() ??
+                                            'N/A'),
                                   ),
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: item(true, 'Request Time', controller.Obj.value.data?.svcData[0].requestedTime.toString() ?? 'N/A'),
-                                      ),
-                                      SizedBox(width: 10.w),
-                                      Expanded(
-                                        child: item(true, 'Service Date', controller.Obj.value.data?.svcData[0].startDate.toString() ?? 'N/A'),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Expanded(
-                                        child: warrantyCheckBox(),
-                                      ),
-                                      const SizedBox(width: 20),
-                                      Expanded(
-                                        child: item(true, 'Start Time', controller.Obj.value.data?.svcData[0].noStarttime.toString() == '1' ? 'To Be Determined' : controller.Obj.value.data?.svcData[0].startTime.toString() ?? 'N/A'),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: item(true, 'Priority Level', controller.Obj.value.data?.svcData[0].priorityLevel.toString() ?? 'N/A'),
-                                      ),
-                                      SizedBox(width: 10.w),
-                                      Expanded(
-                                        child: item(true, 'End Time', controller.Obj.value.data?.svcData[0].noEndtime.toString() == '1' ? 'To Be Determined' : controller.Obj.value.data?.svcData[0].endTime.toString() ?? 'N/A'),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: item(false, 'Engineer', controller.Obj.value.data?.svcData[0].empname.toString() ?? 'N/A'),
-                                      ),
-                                      SizedBox(width: 10.w),
-                                      Expanded(
-                                        child: item(true, 'Travel Time', controller.Obj.value.data?.svcData[0].travelTime.toString() ?? 'N/A'),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: item(false, 'Total Hours Changed', controller.Obj.value.data?.svcData[0].totalTime.toString() ?? 'N/A'),
-                                      ),
-                                      SizedBox(width: 10.w),
-                                      Expanded(
-                                        child: Container(),
-                                      ),
-                                    ],
-                                  ),
-                                  Divider(
-                                    color: Colors.grey,
-                                    thickness: 1.w,
-                                  ),
-                                  SizedBox(height: 5.h),
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: item(false, 'Product Type', controller.desProductType.value.toString()),
-                                      ),
-                                      SizedBox(width: 10.w),
-                                      Expanded(
-                                        child: Container(
-                                          child: item(false, 'Serial/Ticket Number', controller.Obj.value.data?.svcData[0].srlIntgrtd.toString() ?? 'N/A'),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: item(true, 'Type of Hours', controller.desTypeofHours.value.toString()),
-                                      ),
-                                      const SizedBox(width: 20),
-                                      Expanded(
-                                        child: Container(
-                                          child: item(false, 'Labour', controller.Obj.value.data?.svcData[0].agreedLabourCost.toString() ?? 'N/A'),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: item(true, 'To be Paid In', controller.Obj.value.data?.svcData[0].duedaysInvoice.toString() ?? 'N/A'),
-                                      ),
-                                      const SizedBox(width: 20),
-                                      Expanded(
-                                        child: Container(),
-                                      ),
-                                    ],
-                                  ),
-                                  // problems
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: item(false, 'Problem ', controller.Obj.value.data?.svcData[0].problems.toString() ?? 'N/A'),
-                                      ),
-                                    ],
-                                  ),
-                                  // findings
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: item(false, 'Findings', controller.Obj.value.data?.svcData[0].findings.toString() ?? 'N/A'),
-                                      ),
-                                    ],
-                                  ),
-                                  // work undertaken
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: item(false, 'Work Undertaken', controller.Obj.value.data?.svcData[0].workUndertaken.toString() ?? 'N/A'),
-                                      ),
-                                    ],
-                                  ),
-                                  // recommendation
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: item(false, 'Recommendations', controller.Obj.value.data?.svcData[0].recommendations.toString() ?? 'N/A'),
-                                      ),
-                                    ],
-                                  ),
-                                  // action task
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: item(false, 'Action Task', controller.Obj.value.data?.svcData[0].actionTask.toString() ?? 'N/A'),
-                                      ),
-                                    ],
+                                  SizedBox(width: 10.w),
+                                  Expanded(
+                                    child: item(
+                                        true,
+                                        'Request No',
+                                        controller.Obj.value.data?.svcData[0]
+                                                .requisitionNo
+                                                .toString() ??
+                                            'N/A'),
                                   ),
                                 ],
                               ),
-                            ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: item(
+                                        true,
+                                        'Request Time',
+                                        controller.Obj.value.data?.svcData[0]
+                                                .requestedTime
+                                                .toString() ??
+                                            'N/A'),
+                                  ),
+                                  SizedBox(width: 10.w),
+                                  Expanded(
+                                    child: item(
+                                        true,
+                                        'Service Date',
+                                        controller.Obj.value.data?.svcData[0]
+                                                .startDate
+                                                .toString() ??
+                                            'N/A'),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    child: warrantyCheckBox(),
+                                  ),
+                                  const SizedBox(width: 20),
+                                  Expanded(
+                                    child: item(
+                                        true,
+                                        'Start Time',
+                                        controller.Obj.value.data?.svcData[0]
+                                                    .noStarttime
+                                                    .toString() ==
+                                                '1'
+                                            ? 'To Be Determined'
+                                            : controller.Obj.value.data
+                                                    ?.svcData[0].startTime
+                                                    .toString() ??
+                                                'N/A'),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: item(
+                                        true,
+                                        'Priority Level',
+                                        controller.Obj.value.data?.svcData[0]
+                                                .priorityLevel
+                                                .toString() ??
+                                            'N/A'),
+                                  ),
+                                  SizedBox(width: 10.w),
+                                  Expanded(
+                                    child: item(
+                                        true,
+                                        'End Time',
+                                        controller.Obj.value.data?.svcData[0]
+                                                    .noEndtime
+                                                    .toString() ==
+                                                '1'
+                                            ? 'To Be Determined'
+                                            : controller.Obj.value.data
+                                                    ?.svcData[0].endTime
+                                                    .toString() ??
+                                                'N/A'),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: item(
+                                        false,
+                                        'Engineer',
+                                        controller.Obj.value.data?.svcData[0]
+                                                .empname
+                                                .toString() ??
+                                            'N/A'),
+                                  ),
+                                  SizedBox(width: 10.w),
+                                  Expanded(
+                                    child: item(
+                                        true,
+                                        'Travel Time',
+                                        controller.Obj.value.data?.svcData[0]
+                                                .travelTime
+                                                .toString() ??
+                                            'N/A'),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: item(
+                                        false,
+                                        'Total Hours Changed',
+                                        controller.totaltiemcalculated.value),
+                                  ),
+                                  SizedBox(width: 10.w),
+                                  Expanded(
+                                    child: Container(),
+                                  ),
+                                ],
+                              ),
+                              Divider(
+                                color: Colors.grey,
+                                thickness: 1.w,
+                              ),
+                              SizedBox(height: 5.h),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: item(
+                                        false,
+                                        'Product Type',
+                                        controller.desProductType.value
+                                            .toString()),
+                                  ),
+                                  SizedBox(width: 10.w),
+                                  Expanded(
+                                    child: Container(
+                                      child: item(
+                                          false,
+                                          'Serial/Ticket Number',
+                                          controller.Obj.value.data?.svcData[0]
+                                                  .ticketId
+                                                  .toString() ??
+                                              'N/A'),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: item(
+                                        true,
+                                        'Type of Hours',
+                                        controller.desTypeofHours.value
+                                            .toString()),
+                                  ),
+                                  const SizedBox(width: 20),
+                                  Expanded(
+                                    child: Container(
+                                      child: item(
+                                          false,
+                                          'Labour',
+                                          controller.Obj.value.data?.svcData[0]
+                                                  .agreedLabourCost
+                                                  .toString() ??
+                                              'N/A'),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: item(
+                                        true,
+                                        'To be Paid In',
+                                        controller.Obj.value.data?.svcData[0]
+                                                .duedaysInvoice
+                                                .toString() ??
+                                            'N/A'),
+                                  ),
+                                  const SizedBox(width: 20),
+                                  Expanded(
+                                    child: Container(),
+                                  ),
+                                ],
+                              ),
+                              // problems
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: item(
+                                        false,
+                                        'Problem ',
+                                        controller.Obj.value.data?.svcData[0]
+                                                .problems
+                                                .toString() ??
+                                            'N/A'),
+                                  ),
+                                ],
+                              ),
+                              // findings
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: item(
+                                        false,
+                                        'Findings',
+                                        controller.Obj.value.data?.svcData[0]
+                                                .findings
+                                                .toString() ??
+                                            'N/A'),
+                                  ),
+                                ],
+                              ),
+                              // work undertaken
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: item(
+                                        false,
+                                        'Work Undertaken',
+                                        controller.Obj.value.data?.svcData[0]
+                                                .workUndertaken
+                                                .toString() ??
+                                            'N/A'),
+                                  ),
+                                ],
+                              ),
+                              // recommendation
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: item(
+                                        false,
+                                        'Recommendations',
+                                        controller.Obj.value.data?.svcData[0]
+                                                .recommendations
+                                                .toString() ??
+                                            'N/A'),
+                                  ),
+                                ],
+                              ),
+                              // action task
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: item(
+                                        false,
+                                        'Action Task',
+                                        controller.Obj.value.data?.svcData[0]
+                                                .actionTask
+                                                .toString() ??
+                                            'N/A'),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
-                        // part cost for service from
-                        // Padding(
-                        //   padding: EdgeInsets.all(10.w),
-                        //   child: Card(
-                        //     shadowColor: Colors.black,
-                        //     elevation: 2,
-                        //     shape: RoundedRectangleBorder(
-                        //       borderRadius: BorderRadius.circular(10.r),
-                        //     ),
-                        //     child: Padding(
-                        //       padding: EdgeInsets.all(10.w),
-                        //       child: Column(
-                        //         crossAxisAlignment: CrossAxisAlignment.start,
-                        //         children: [
-                        //           // card title
-                        //           appcardviewTitle('PART COST FOR SERVICE FORM'),
-                        //           SizedBox(height: 20.h),
-                        //           // Container(
-                        //           //   width: double.infinity,
-                        //           //   child: Container(child: hasData ? buildDataTable() : buildNoDataTable()
-                        //           //       // Visibility(
-                        //           //       //   visible: hasData,
-                        //           //       //   child: buildDataTable(),
-                        //           //       // ),
-                        //           //       ),
-                        //           // ),
-                        //           SizedBox(height: 20.h),
-                        //           const Divider(color: Colors.grey),
-                        //           // show btn pnl
-                        //           // buildButtonPnl(),
-                        //         ],
-                        //       ),
-                        //     ),
-                        //   ),
-                        // ),
-        
-                        buildTblcard(context),
-                      ],
+                      ),
                     ),
-                  )
-                ],
-              ),
-            ),
-          
+                    // part cost for service from
+                    // Padding(
+                    //   padding: EdgeInsets.all(10.w),
+                    //   child: Card(
+                    //     shadowColor: Colors.black,
+                    //     elevation: 2,
+                    //     shape: RoundedRectangleBorder(
+                    //       borderRadius: BorderRadius.circular(10.r),
+                    //     ),
+                    //     child: Padding(
+                    //       padding: EdgeInsets.all(10.w),
+                    //       child: Column(
+                    //         crossAxisAlignment: CrossAxisAlignment.start,
+                    //         children: [
+                    //           // card title
+                    //           appcardviewTitle('PART COST FOR SERVICE FORM'),
+                    //           SizedBox(height: 20.h),
+                    //           // Container(
+                    //           //   width: double.infinity,
+                    //           //   child: Container(child: hasData ? buildDataTable() : buildNoDataTable()
+                    //           //       // Visibility(
+                    //           //       //   visible: hasData,
+                    //           //       //   child: buildDataTable(),
+                    //           //       // ),
+                    //           //       ),
+                    //           // ),
+                    //           SizedBox(height: 20.h),
+                    //           const Divider(color: Colors.grey),
+                    //           // show btn pnl
+                    //           // buildButtonPnl(),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+
+                    buildTblcard(context),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -331,7 +483,11 @@ class SfviewView extends GetView<SfviewController> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(2.r),
                     ),
-                    value: controller.Obj.value.data?.svcData[0].warranty.toString() == '0' ? false : true,
+                    value: controller.Obj.value.data?.svcData[0].warranty
+                                .toString() ==
+                            '0'
+                        ? false
+                        : true,
                     // value: controller.iswarrenty.value,
                     onChanged: (val) {
                       // controller.iswarrenty.value = val!;
@@ -352,7 +508,7 @@ class SfviewView extends GetView<SfviewController> {
       padding: EdgeInsets.all(10.w),
       child: Card(
         shadowColor: Colors.black,
-                            elevation: 2.w,
+        elevation: 2.w,
         child: Column(
           children: [
             // data table
@@ -367,7 +523,8 @@ class SfviewView extends GetView<SfviewController> {
                         dataRowMinHeight: 40.w,
                         columns: [
                           DataColumn(label: appitemtableHeadertxt('ITEM')),
-                          DataColumn(label: appitemtableHeadertxt('DESCRIPTION')),
+                          DataColumn(
+                              label: appitemtableHeadertxt('DESCRIPTION')),
                           DataColumn(label: appitemtableHeadertxt('COST')),
                           DataColumn(label: appitemtableHeadertxt('PURPOSE')),
                           DataColumn(label: appitemtableHeadertxt('SERIAL NO')),
@@ -386,8 +543,10 @@ class SfviewView extends GetView<SfviewController> {
             ),
             Align(
               child: Obx(() => Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.w),
-                    child: appnormaltxt("Total Cost : " + controller.totalcost.value.toString()),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.w),
+                    child: appnormaltxt("Total Cost : " +
+                        controller.totalcost.value.toString()),
                   )),
               alignment: Alignment.centerRight,
             ),
@@ -548,13 +707,11 @@ class SfviewView extends GetView<SfviewController> {
                     SizedBox(width: 20.w),
                     SizedBox(
                         width: 100.w,
-                        child: appLoadingButton(
-                          AppColor.mainBlueColor,
-                          () async {
+                        child:
+                            appLoadingButton(AppColor.mainBlueColor, () async {
                           // Get.back();
                           controller.deleteServiceForm();
                         }, 'Yes', controller.isDeleting.value)),
-                    
                   ],
                 )
               ],

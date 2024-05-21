@@ -248,7 +248,7 @@ class SfeditController extends GetxController {
 
         tTime = totalTimeIn.toString();
 
-        totaltiemcalculated.value = svcdata.totalTime ?? 'To Be Determined';
+        totaltiemcalculated.value = calculateTotalTime();
 
         // set dropdown ids
         idofselectedtypeofhours.value = svcdata.typeofwork.toString();
