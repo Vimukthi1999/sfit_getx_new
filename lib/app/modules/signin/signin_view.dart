@@ -50,7 +50,8 @@ class SigninView extends GetView<SigninController> {
                   children: [
                     Text(
                       'System Force I.T',
-                      style: TextStyle(fontSize: 38.sp, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          fontSize: 38.sp, fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
                       height: 5.h,
@@ -84,7 +85,8 @@ class SigninView extends GetView<SigninController> {
                       child: TextFormField(
                         controller: controller.controllerUser,
                         style: TextStyle(fontSize: 18.sp, color: Colors.black),
-                        decoration: appTxtfiledDecoration('Enter your username'),
+                        decoration:
+                            appTxtfiledDecoration('Enter your username'),
                         textInputAction: TextInputAction.next,
                       ),
                     ),
@@ -97,22 +99,28 @@ class SigninView extends GetView<SigninController> {
                         child: TextFormField(
                           controller: controller.controllerPw,
                           obscureText: controller.passwordVisible.value,
-                          style: TextStyle(fontSize: 18.sp, color: Colors.black),
+                          style:
+                              TextStyle(fontSize: 18.sp, color: Colors.black),
+                          scrollPadding: EdgeInsets.only(bottom: 40),
                           decoration: InputDecoration(
                             border: const OutlineInputBorder(),
                             focusedBorder: const OutlineInputBorder(),
                             hintText: 'Enter your password',
-                            hintStyle: TextStyle(color: Colors.grey, fontSize: 18.sp),
+                            hintStyle:
+                                TextStyle(color: Colors.grey, fontSize: 18.sp),
                             suffixIcon: IconButton(
                               icon: Icon(
                                 // Based on passwordVisible state choose the icon
-                                
-                                controller.passwordVisible.value ? Icons.visibility_off : Icons.visibility,
+
+                                controller.passwordVisible.value
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
                                 color: Theme.of(context).primaryColorDark,
                                 size: 30.w,
                               ),
                               onPressed: () {
-                                controller.passwordVisible.value = !controller.passwordVisible.value;
+                                controller.passwordVisible.value =
+                                    !controller.passwordVisible.value;
                               },
                               padding: EdgeInsets.only(right: 18.w),
                             ),
@@ -124,7 +132,11 @@ class SigninView extends GetView<SigninController> {
                     SizedBox(height: 20.h),
 
                     // sign in button
-                    Obx(() => appLoadingButton(Theme.of(context).primaryColor, controller.signIn, 'Sign In', controller.loading.value)),
+                    Obx(() => appLoadingButton(
+                        Theme.of(context).primaryColor,
+                        controller.signIn,
+                        'Sign In',
+                        controller.loading.value)),
                   ],
                 ),
               ),

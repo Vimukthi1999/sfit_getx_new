@@ -1204,6 +1204,10 @@ class SfeditView extends GetView<SfeditController> {
                 ),
                 maxLines: 3,
                 controller: txtcontroller,
+                onTapOutside: (event) {
+                  print('onTapOutside');
+                  FocusManager.instance.primaryFocus?.unfocus();
+                },
               ),
             ],
             onExpansionChanged: (isExpanded) => {},

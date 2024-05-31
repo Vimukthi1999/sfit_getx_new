@@ -13,6 +13,7 @@ class ServiceformView extends GetView<ServiceformController> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: true,
         key: controller.scaffoldKey,
         // floatingActionButton: FloatingActionButton(onPressed: () {}),
         drawer: Container(

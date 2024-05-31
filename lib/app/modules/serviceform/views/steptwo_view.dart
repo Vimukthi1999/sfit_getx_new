@@ -53,32 +53,48 @@ class SteptwoView extends GetView<ServiceformController> {
                                         alignment: Alignment.centerLeft,
                                         child: Obx(
                                           () => Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               InkWell(
                                                 onTap: () {
-                                                  controller.dePriority(controller.priority.value);
+                                                  controller.dePriority(
+                                                      controller
+                                                          .priority.value);
                                                 },
                                                 child: Icon(
-                                                  Icons.indeterminate_check_box_rounded,
+                                                  Icons
+                                                      .indeterminate_check_box_rounded,
                                                   size: 55.w,
-                                                  color: controller.priority.value == 1 ? Colors.grey : Colors.black,
+                                                  color: controller
+                                                              .priority.value ==
+                                                          1
+                                                      ? Colors.grey
+                                                      : Colors.black,
                                                 ),
                                               ),
                                               Container(
                                                 child: Text(
-                                                  controller.priority.value.toString(),
-                                                  style: TextStyle(fontSize: 18.sp),
+                                                  controller.priority.value
+                                                      .toString(),
+                                                  style: TextStyle(
+                                                      fontSize: 18.sp),
                                                 ),
                                               ),
                                               InkWell(
                                                 onTap: () {
-                                                  controller.inPriority(controller.priority.value);
+                                                  controller.inPriority(
+                                                      controller
+                                                          .priority.value);
                                                 },
                                                 child: Icon(
                                                   Icons.add_box_rounded,
                                                   size: 55.w,
-                                                  color: controller.priority.value == 3 ? Colors.grey : Colors.black,
+                                                  color: controller
+                                                              .priority.value ==
+                                                          3
+                                                      ? Colors.grey
+                                                      : Colors.black,
                                                 ),
                                               ),
                                             ],
@@ -96,7 +112,11 @@ class SteptwoView extends GetView<ServiceformController> {
                         children: [
                           Expanded(
                             child: Container(
-                              child: buildformDateTimePicker('Request Date', controller.requestDate.value, context, true, () {
+                              child: buildformDateTimePicker(
+                                  'Request Date',
+                                  controller.requestDate.value,
+                                  context,
+                                  true, () {
                                 controller.pickRequestDate(context);
                               }),
                             ),
@@ -104,7 +124,11 @@ class SteptwoView extends GetView<ServiceformController> {
                           SizedBox(width: 10.w),
                           Expanded(
                             child: Container(
-                              child: buildformDateTimePicker('Request Time', controller.requestTime.value, context, false, () {
+                              child: buildformDateTimePicker(
+                                  'Request Time',
+                                  controller.requestTime.value,
+                                  context,
+                                  false, () {
                                 controller.pickRequestTime(context);
                               }),
                             ),
@@ -116,7 +140,11 @@ class SteptwoView extends GetView<ServiceformController> {
                         children: [
                           Expanded(
                             child: Container(
-                              child: buildformDateTimePicker('Service Date', controller.serviceDate.value, context, true, () {
+                              child: buildformDateTimePicker(
+                                  'Service Date',
+                                  controller.serviceDate.value,
+                                  context,
+                                  true, () {
                                 controller.pickServiceDate(context);
                               }),
                             ),
@@ -127,7 +155,8 @@ class SteptwoView extends GetView<ServiceformController> {
                               child: Obx(() => buildformAddLaterTimePicker(
                                   'Start Time',
                                   controller.startTime.value,
-                                  startTime(context, controller.isStartTimeAddLater.value, () {
+                                  startTime(context,
+                                      controller.isStartTimeAddLater.value, () {
                                     controller.pickStartTime(context);
                                   }))),
                             ),
@@ -142,7 +171,8 @@ class SteptwoView extends GetView<ServiceformController> {
                               child: Obx(() => buildformAddLaterTimePicker(
                                   'End Time',
                                   controller.endTime.value,
-                                  endTime(context, controller.isEndTimeAddLater.value, () {
+                                  endTime(context,
+                                      controller.isEndTimeAddLater.value, () {
                                     controller.pickEndTime(context);
                                   }))),
                             ),
@@ -166,10 +196,13 @@ class SteptwoView extends GetView<ServiceformController> {
                                     padding: EdgeInsets.fromLTRB(20.h, 0, 0, 0),
                                     child: Center(
                                       child: TextField(
-                                        controller: controller.traveltimecontroller,
+                                        controller:
+                                            controller.traveltimecontroller,
                                         decoration: InputDecoration(
                                           hintText: 'hh:mm',
-                                          hintStyle: TextStyle(color: Colors.black, fontSize: 15.sp),
+                                          hintStyle: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 15.sp),
                                           border: InputBorder.none,
                                         ),
                                         keyboardType: TextInputType.number,
@@ -179,11 +212,17 @@ class SteptwoView extends GetView<ServiceformController> {
                                           // This input formatter will do the job
                                         ],
                                         onTap: () {
-                                          controller.traveltimecontroller.selection = TextSelection(
+                                          controller.traveltimecontroller
+                                              .selection = TextSelection(
                                             baseOffset: 0,
-                                            extentOffset: controller.traveltimecontroller.value.text.length,
+                                            extentOffset: controller
+                                                .traveltimecontroller
+                                                .value
+                                                .text
+                                                .length,
                                           );
-                                          controller.traveltimecontroller.clear();
+                                          controller.traveltimecontroller
+                                              .clear();
                                         },
                                         onEditingComplete: () {
                                           FocusScope.of(context).unfocus();
@@ -216,7 +255,10 @@ class SteptwoView extends GetView<ServiceformController> {
                                         width: 1.w,
                                         style: BorderStyle.solid,
                                       )),
-                                      child: Align(alignment: Alignment.centerLeft, child: apphintTxt(controller.totaltiemcalculated.value))),
+                                      child: Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: apphintTxt(controller
+                                              .totaltiemcalculated.value))),
                                 ),
                               ],
                             ),
@@ -286,19 +328,21 @@ class SteptwoView extends GetView<ServiceformController> {
                 if (ischeck) {
                   controller.startTime.value = 'Add Later';
                   controller.sTime = '15000';
-                  controller.totaltiemcalculated.value = controller.calculateTotalTime();
-                  
+                  controller.totaltiemcalculated.value =
+                      controller.calculateTotalTime();
                 } else {
                   controller.startTime.value = 'hh:mm';
                 }
-                if (controller.totaltiemcalculated.value != 'To Be Determined' && controller.idofselectedtypeofhours.value != '') {
-                    controller.getLabourHours(
-                      controller.idofselectedtypeofhours.value,
-                      controller.idofselectedcontarct.value,
-                      // controller.totaltiemcalculated.value == 'To Be Determined' ? '' :
-                      controller.totaltiemcalculated.value.toString(),
-                    );
-                  }
+                if (controller.totaltiemcalculated.value !=
+                        'To Be Determined' &&
+                    controller.idofselectedtypeofhours.value != '') {
+                  controller.getLabourHours(
+                    controller.idofselectedtypeofhours.value,
+                    controller.idofselectedcontarct.value,
+                    // controller.totaltiemcalculated.value == 'To Be Determined' ? '' :
+                    controller.totaltiemcalculated.value.toString(),
+                  );
+                }
               },
             ),
           ),
@@ -355,18 +399,21 @@ class SteptwoView extends GetView<ServiceformController> {
                 if (ischeck) {
                   controller.endTime.value = 'Add Later';
                   controller.eTime = '15000';
-                  controller.totaltiemcalculated.value = controller.calculateTotalTime();
+                  controller.totaltiemcalculated.value =
+                      controller.calculateTotalTime();
                 } else {
                   controller.endTime.value = 'hh:mm';
                 }
-                if (controller.totaltiemcalculated.value != 'To Be Determined' && controller.idofselectedtypeofhours.value != '') {
-                    controller.getLabourHours(
-                      controller.idofselectedtypeofhours.value,
-                      controller.idofselectedcontarct.value,
-                      // controller.totaltiemcalculated.value == 'To Be Determined' ? '' :
-                      controller.totaltiemcalculated.value.toString(),
-                    );
-                  }
+                if (controller.totaltiemcalculated.value !=
+                        'To Be Determined' &&
+                    controller.idofselectedtypeofhours.value != '') {
+                  controller.getLabourHours(
+                    controller.idofselectedtypeofhours.value,
+                    controller.idofselectedcontarct.value,
+                    // controller.totaltiemcalculated.value == 'To Be Determined' ? '' :
+                    controller.totaltiemcalculated.value.toString(),
+                  );
+                }
               },
             ),
           ),

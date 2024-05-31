@@ -73,7 +73,7 @@ class StepthreeView extends GetView<ServiceformController> {
                               //     });
                               //   }),
                               // ),
-
+    
                               Obx(
                                 () => Container(
                                     height: 55.w,
@@ -176,7 +176,7 @@ class StepthreeView extends GetView<ServiceformController> {
                       ],
                     ),
                     SizedBox(height: 20.h),
-
+    
                     buildexpandItems(
                         true,
                         'Problem',
@@ -200,8 +200,12 @@ class StepthreeView extends GetView<ServiceformController> {
     );
   }
 
-  Widget buildexpandItems(bool isreq, String title, String hint,
-      TextEditingController txtcontroller) {
+  Widget buildexpandItems(
+    bool isreq,
+    String title,
+    String hint,
+    TextEditingController txtcontroller,
+  ) {
     return Padding(
       padding: EdgeInsets.only(bottom: 15.w),
       child: ConstrainedBox(
@@ -235,6 +239,10 @@ class StepthreeView extends GetView<ServiceformController> {
                 ),
                 maxLines: 3,
                 controller: txtcontroller,
+                onTapOutside: (event) {
+                  print('onTapOutside');
+                  FocusManager.instance.primaryFocus?.unfocus();
+                },
               ),
             ],
             onExpansionChanged: (isExpanded) => {},
